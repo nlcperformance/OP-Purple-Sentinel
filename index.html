@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OP: PURPLE SENTINEL // v6.0</title>
+    <title>OP: PURPLE SENTINEL // COMMAND CONSOLE v9.5</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -11,10 +11,11 @@
                 extend: {
                     colors: {
                         brand: {
-                            purple: '#9333ea', // Purple 600
-                            dark: '#09090b',   // Zinc 950
-                            card: '#18181b',   // Zinc 900
-                            border: '#27272a'  // Zinc 800
+                            purple: '#9333ea', 
+                            emerald: '#10b981', 
+                            dark: '#050507',   
+                            card: '#0c0c0f',   
+                            border: '#1c1c24'  
                         }
                     },
                     fontFamily: {
@@ -28,192 +29,200 @@
     </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Oswald:wght@500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;700&family=Oswald:wght@500;700&display=swap');
 
         body {
             background-color: #000000;
-            color: #d4d4d8; /* zinc-300 */
+            color: #d4d4d8;
             background-image: 
-                radial-gradient(circle at 15% 50%, rgba(147, 51, 234, 0.05), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(147, 51, 234, 0.05), transparent 25%);
+                radial-gradient(circle at 10% 25%, rgba(147, 51, 234, 0.05), transparent 30%),
+                radial-gradient(circle at 90% 75%, rgba(16, 185, 129, 0.03), transparent 35%);
             background-attachment: fixed;
             overflow-x: hidden;
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #000; }
         ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: #9333ea; }
 
-        /* Sleek Card Styling */
         .glass-card {
-            background: rgba(24, 24, 27, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(63, 63, 70, 0.4);
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
-            transition: transform 0.2s, border-color 0.2s;
+            background: rgba(10, 10, 13, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(147, 51, 234, 0.12);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
+        .glass-card:hover {
+            border-color: rgba(147, 51, 234, 0.3);
+            box-shadow: 0 12px 40px 0 rgba(147, 51, 234, 0.05);
+        }
+
+        .day-card {
+            border-left: 4px solid #1c1c24;
+            transition: all 0.25s ease;
+        }
+
         .day-card:hover {
-            border-color: rgba(147, 51, 234, 0.5);
-            transform: translateY(-2px);
+            transform: translateX(6px);
+            border-left-color: #9333ea;
         }
 
-        /* Toggle Switch Styling */
-        .toggle-checkbox:checked {
-            right: 0;
-            border-color: #9333ea;
-        }
-        .toggle-checkbox:checked + .toggle-label {
-            background-color: #9333ea;
-        }
-        .toggle-checkbox {
-            right: 0;
-            z-index: 1;
-            border-color: #3f3f46;
-            transition: all 0.3s;
-        }
-        .toggle-label {
-            width: 3rem;
-            height: 1.5rem;
-            background-color: #27272a;
-            border-radius: 9999px;
-            transition: all 0.3s;
-        }
+        .toggle-checkbox:checked { right: 0; border-color: #9333ea; }
+        .toggle-checkbox:checked + .toggle-label { background-color: #9333ea; }
+        .toggle-checkbox { right: 0; z-index: 1; border-color: #27272a; transition: all 0.3s; }
+        .toggle-label { width: 2.75rem; height: 1.5rem; background-color: #18181b; border-radius: 9999px; transition: all 0.3s; }
 
-        /* Navigation Pills */
         .nav-pill {
             background: transparent;
-            color: #a1a1aa;
-            border: 1px solid #3f3f46;
-            transition: all 0.2s;
+            color: #71717a;
+            border: 1px solid #1c1c24;
+            transition: all 0.25s ease;
         }
-        .nav-pill:hover {
-            border-color: #9333ea;
-            color: #fff;
-        }
+        .nav-pill:hover { border-color: #9333ea; color: #fff; }
         .nav-pill.active {
             background: #9333ea;
             color: #fff;
             border-color: #9333ea;
-            box-shadow: 0 0 15px rgba(147, 51, 234, 0.3);
+            box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
         }
 
-        .highlight-border {
-            border-left: 3px solid #9333ea;
+        .vertical-text { writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); }
+
+        .btn-toggle {
+            border: 1px solid #27272a;
+            color: #71717a;
+            transition: all 0.2s;
+        }
+        .btn-toggle.active {
+            background-color: rgba(147, 51, 234, 0.15);
+            border-color: #9333ea;
+            color: #c084fc;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(147, 51, 234, 0.1);
         }
 
-        /* Vertical Tab Button */
-        .vertical-text {
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            transform: rotate(180deg);
+        .tab-nav {
+            color: #71717a;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 0.5rem;
+            transition: all 0.2s;
+            cursor: pointer;
         }
+        .tab-nav.active {
+            color: #ffffff;
+            border-bottom: 2px solid #9333ea;
+        }
+
+        .dice-shake { animation: shake 0.6s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-2px, 0, 0) rotate(-6deg); }
+            20%, 80% { transform: translate3d(3px, 0, 0) rotate(6deg); }
+            30%, 50%, 70% { transform: translate3d(-5px, 0, 0) rotate(-12deg); }
+            40%, 60% { transform: translate3d(5px, 0, 0) rotate(12deg); }
+        }
+
+        .chat-bubble {
+            border-radius: 12px;
+            padding: 12px 16px;
+            max-width: 85%;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+        .chat-user {
+            background-color: #27272a;
+            color: #fff;
+            border-bottom-right-radius: 2px;
+            align-self: flex-end;
+        }
+        .chat-ai {
+            background-color: rgba(147, 51, 234, 0.15);
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            color: #e5e5e5;
+            border-bottom-left-radius: 2px;
+            align-self: flex-start;
+        }
+        .chat-ai strong { color: #d8b4fe; }
     </style>
 </head>
-<body class="min-h-screen p-4 md:p-8 font-sans selection:bg-brand-purple selection:text-white">
+<body class="min-h-screen p-4 md:p-8 selection:bg-brand-purple selection:text-white">
 
-    <!-- FLOATING PRE-HAB TRIGGER -->
     <button id="warmup-trigger" class="fixed right-0 top-1/3 bg-brand-purple text-white py-6 px-2.5 rounded-l-xl font-bold text-xs tracking-widest shadow-[0_0_20px_rgba(147,51,234,0.3)] z-40 hover:bg-purple-700 transition-all duration-200 vertical-text border-l border-t border-b border-purple-500/30">
         WARM-UP & PRE-HAB
     </button>
 
-    <!-- SLIDING PRE-HAB PANEL -->
     <div id="warmup-overlay" class="fixed inset-0 bg-black/70 z-40 hidden transition-all duration-300 backdrop-blur-sm"></div>
     <div id="warmup-panel" class="fixed top-0 right-0 h-full w-80 md:w-96 bg-zinc-950 border-l border-purple-500/20 shadow-[-10px_0_30px_rgba(0,0,0,0.8)] z-50 transform translate-x-full transition-transform duration-300 overflow-y-auto">
         <div class="p-6">
             <div class="flex justify-between items-center mb-6 border-b border-zinc-800 pb-4">
                 <h2 class="text-xl font-display font-bold text-white tracking-tight uppercase flex items-center gap-2">
-                    <i class="fas fa-heartbeat text-brand-purple"></i> 7-Min Armor Circuit
+                    <i class="fas fa-heartbeat text-brand-purple"></i> 7-Min Armor-Prehab
                 </h2>
                 <button id="close-warmup" class="text-zinc-400 hover:text-white transition-colors">
                     <i class="fa-solid fa-xmark text-2xl"></i>
                 </button>
             </div>
             
-            <p class="text-[10px] font-mono text-brand-purple mb-6 font-bold tracking-widest border-b border-zinc-900 pb-3">MANDATORY STRUCTURAL PREPARATION</p>
+            <p class="text-[10px] font-mono text-brand-purple mb-6 font-bold tracking-widest border-b border-zinc-900 pb-3">MANDATORY PREPARATION</p>
             
             <div class="space-y-6 text-sm">
                 <div class="border-b border-zinc-900 pb-4">
-                    <strong class="text-white block font-bold font-mono text-xs flex items-center gap-2">
-                        <span class="text-brand-purple">01.</span> TIB RAISES
-                    </strong>
-                    <span class="text-zinc-400 block mt-1 leading-relaxed text-xs">20 reps. Builds ankle and Achilles armor against dynamic turf friction.</span>
+                    <strong class="text-white block font-bold font-mono text-xs flex items-center gap-2"><span class="text-brand-purple">01.</span> TIB RAISES</strong>
+                    <span class="text-zinc-400 block mt-1 leading-relaxed text-xs">20 reps. Builds ankle and Achilles armor against dynamic BJJ mat pivot friction.</span>
                 </div>
-                
                 <div class="border-b border-zinc-900 pb-4">
-                    <strong class="text-white block font-bold font-mono text-xs flex items-center gap-2">
-                        <span class="text-brand-purple">02.</span> SINGLE LEG CALF RAISES
-                    </strong>
-                    <span class="text-zinc-400 block mt-1 leading-relaxed text-xs">15 reps per leg. Promotes lower leg resilience and tendon/fascial stiffness.</span>
+                    <strong class="text-white block font-bold font-mono text-xs flex items-center gap-2"><span class="text-brand-purple">02.</span> SINGLE LEG CALF RAISES</strong>
+                    <span class="text-zinc-400 block mt-1 leading-relaxed text-xs">15 reps/leg. Promotes lower leg resilience and tendon/fascial stiffness (COL5A1).</span>
                 </div>
-
                 <div class="border-b border-zinc-900 pb-4">
-                    <strong class="text-white block font-bold font-mono text-xs flex items-center gap-2">
-                        <span class="text-brand-purple">03.</span> SPRINTER'S ISO HOLDS
-                    </strong>
-                    <span class="text-zinc-400 block mt-1 leading-relaxed text-xs">20s hold per leg. Maximizes glute-hamstring synchronization and posterior line prep.</span>
+                    <strong class="text-white block font-bold font-mono text-xs flex items-center gap-2"><span class="text-brand-purple">03.</span> SPRINTER'S ISO HOLDS</strong>
+                    <span class="text-zinc-400 block mt-1 leading-relaxed text-xs">20s hold/leg. Maximizes glute-hamstring synchronization and posterior chain prep.</span>
                 </div>
-
                 <div class="border-b border-zinc-900 pb-4">
-                    <strong class="text-white block font-bold font-mono text-xs flex items-center gap-2">
-                        <span class="text-brand-purple">04.</span> COSSACK SQUATS
-                    </strong>
-                    <span class="text-zinc-400 block mt-1 leading-relaxed text-xs">8 reps per side. Dynamically unlocks the adductors and prepares the hips for multi-directional cutting/passing.</span>
+                    <strong class="text-white block font-bold font-mono text-xs flex items-center gap-2"><span class="text-brand-purple">04.</span> COSSACK SQUATS</strong>
+                    <span class="text-zinc-400 block mt-1 leading-relaxed text-xs">8 reps/side. Dynamically unlocks the adductors and prepares hips for multi-directional guard sweeps.</span>
                 </div>
-
                 <div class="border-b border-zinc-900 pb-4">
-                    <strong class="text-white block font-bold font-mono text-xs flex items-center gap-2">
-                        <span class="text-brand-purple">05.</span> LU RAISES
-                    </strong>
+                    <strong class="text-white block font-bold font-mono text-xs flex items-center gap-2"><span class="text-brand-purple">05.</span> LU RAISES</strong>
                     <span class="text-zinc-400 block mt-1 leading-relaxed text-xs">15 reps. Mobilizes and decompresses the shoulder joint girdle against heavy pressing impingements.</span>
                 </div>
-
                 <div class="border-b border-zinc-900 pb-4">
-                    <strong class="text-white block font-bold font-mono text-xs flex items-center gap-2">
-                        <span class="text-brand-purple">06.</span> ECCENTRIC PUSH-UPS
-                    </strong>
-                    <span class="text-zinc-400 block mt-1 leading-relaxed text-xs">5-8 reps. Must include a <span class="text-brand-purple font-semibold">strict 3-second eccentric descent</span>. Preps Triphasic upper-body force absorption.</span>
+                    <strong class="text-white block font-bold font-mono text-xs flex items-center gap-2"><span class="text-brand-purple">06.</span> ECCENTRIC PUSH-UPS</strong>
+                    <span class="text-zinc-400 block mt-1 leading-relaxed text-xs">5-8 reps. Must include a strict 3-second eccentric descent. Preps Triphasic force absorption.</span>
                 </div>
-
                 <div class="border-b border-zinc-900 pb-4">
-                    <strong class="text-white block font-bold font-mono text-xs flex items-center gap-2">
-                        <span class="text-brand-purple">07.</span> WRIST EXTENSOR BAND ISOS
-                    </strong>
+                    <strong class="text-white block font-bold font-mono text-xs flex items-center gap-2"><span class="text-brand-purple">07.</span> WRIST EXTENSOR BAND ISOS</strong>
                     <span class="text-zinc-400 block mt-1 leading-relaxed text-xs">2 sets x 20s. Heavy rubber band over knuckles. Rebalances the hand against heavy grappling/clean flexor dominance.</span>
                 </div>
-
                 <div class="pb-6">
-                    <strong class="text-white block font-bold font-mono text-xs flex items-center gap-2">
-                        <span class="text-brand-purple">08.</span> STIFF LEG POGOS
-                    </strong>
+                    <strong class="text-white block font-bold font-mono text-xs flex items-center gap-2"><span class="text-brand-purple">08.</span> STIFF LEG POGOS</strong>
                     <span class="text-zinc-400 block mt-1 leading-relaxed text-xs">20 reps. Primes tendon elasticity and ankle fast-twitch (ACTN3) response.</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- HEADER / HUD -->
     <header class="max-w-7xl mx-auto mb-8 glass-card p-6 md:p-8">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div>
                 <div class="flex items-center gap-3 mb-1">
-                    <i class="fas fa-biohazard text-brand-purple text-2xl"></i>
+                    <i class="fas fa-ghost text-brand-purple text-2xl animate-pulse"></i>
                     <h1 class="text-3xl md:text-4xl font-display font-bold text-white tracking-tight uppercase">Purple Sentinel</h1>
                 </div>
                 <div class="flex items-center gap-3 font-mono text-xs font-bold tracking-widest text-zinc-400">
-                    <span>SYS v6.0</span>
-                    <span class="w-1 h-1 rounded-full bg-zinc-600"></span>
+                    <span>SYS v9.5</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-zinc-600"></span>
                     <span>ACTN3(RR) / COMT(MET)</span>
-                    <span class="w-1 h-1 rounded-full bg-zinc-600"></span>
-                    <span class="text-brand-purple animate-pulse">IL-6 OPTIMIZED</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-zinc-600"></span>
+                    <span class="text-brand-purple font-black">AI CONSOLIDATED</span>
                 </div>
             </div>
 
             <div class="text-right">
-                <div class="font-mono text-xs text-zinc-500 mb-1 uppercase tracking-widest">SFG1 Mission Clock (Oct 2, 2026)</div>
+                <div class="font-mono text-[10px] text-zinc-500 mb-1 uppercase tracking-widest font-black">SFG1 Mission Clock (Oct 2, 2026)</div>
                 <div id="countdown" class="font-display text-3xl font-bold text-white tracking-wider">CALCULATING...</div>
                 <div class="w-full bg-zinc-800 h-1 mt-2 rounded-full overflow-hidden">
                     <div id="progress-bar" class="bg-brand-purple h-full shadow-[0_0_10px_#9333ea]" style="width: 10%;"></div>
@@ -222,361 +231,942 @@
         </div>
     </header>
 
-    <!-- NAVIGATION: PHASES & MONTHS -->
-    <div class="max-w-7xl mx-auto mb-8 space-y-4">
-        <!-- Phases -->
-        <div class="flex flex-wrap gap-2">
-            <button onclick="setPhase(1)" id="btn-p1" class="nav-pill px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest active">
-                1: Integrity <span class="opacity-50 ml-1 font-normal">(Feb-Mar)</span>
-            </button>
-            <button onclick="setPhase(2)" id="btn-p2" class="nav-pill px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest">
-                2: Density <span class="opacity-50 ml-1 font-normal">(Apr-Jun)</span>
-            </button>
-            <button onclick="setPhase(3)" id="btn-p3" class="nav-pill px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest">
-                3: SFG1 Prep <span class="opacity-50 ml-1 font-normal">(Jul-Sep)</span>
-            </button>
-            <button onclick="setPhase(4)" id="btn-p4" class="nav-pill px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest">
-                4: Taper <span class="opacity-50 ml-1 font-normal">(Oct)</span>
-            </button>
+    <div class="max-w-7xl mx-auto mb-6 grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="glass-card p-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="text-left w-full sm:w-auto">
+                <span class="text-xs font-mono text-brand-purple uppercase tracking-widest font-bold block mb-1">Season Cadence Module</span>
+                <span class="text-xs text-zinc-400">Align weekly structure with active grappling maps.</span>
+            </div>
+            <div class="flex space-x-2 w-full sm:w-auto">
+                <button onclick="setSeason('summer')" id="btn-season-summer" class="nav-pill flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-widest active">
+                    Summer <span class="opacity-60 text-[10px] ml-1">(3x BJJ)</span>
+                </button>
+                <button onclick="setSeason('winter')" id="btn-season-winter" class="nav-pill flex-1 sm:flex-none px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-widest">
+                    Autumn <span class="opacity-60 text-[10px] ml-1">(2x BJJ)</span>
+                </button>
+            </div>
         </div>
-        
-        <!-- Months -->
-        <div id="month-container" class="flex flex-wrap gap-2 p-4 glass-card">
-            <!-- JS Injects Month Pills Here -->
+
+        <div class="glass-card p-4 flex flex-col gap-4">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div class="text-left w-full sm:w-auto">
+                    <span class="text-xs font-mono text-brand-purple uppercase tracking-widest font-bold block mb-1">Lifting Strategy Select</span>
+                    <span class="text-xs text-zinc-400">Calibrate lift blocks between mat sessions.</span>
+                </div>
+                <div class="flex space-x-1.5 w-full sm:w-auto">
+                    <button onclick="autoSelectProtocol()" class="bg-brand-purple hover:bg-purple-700 text-white flex-1 sm:flex-none px-3 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-colors shadow-[0_0_10px_rgba(147,51,234,0.3)]">
+                        <i class="fas fa-microchip mr-1"></i> Auto-Assign
+                    </button>
+                    <button onclick="setLiftStrategy('beastly')" id="btn-strat-beastly" class="btn-toggle flex-1 sm:flex-none px-3 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider active">
+                        Beastly 3
+                    </button>
+                    <button onclick="setLiftStrategy('dfw')" id="btn-strat-dfw" class="btn-toggle flex-1 sm:flex-none px-3 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider">
+                        DFW
+                    </button>
+                    <button onclick="setLiftStrategy('hybrid')" id="btn-strat-hybrid" class="btn-toggle flex-1 sm:flex-none px-3 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider">
+                        Hybrid Peak
+                    </button>
+                </div>
+            </div>
+            
+            <div class="bg-zinc-950/60 border border-zinc-800 rounded-lg p-3 text-[10px] text-zinc-400 font-mono leading-relaxed shadow-inner">
+                <strong class="text-brand-purple block mb-1"><i class="fas fa-sitemap mr-1"></i> CONSOLIDATION AUTO-REGULATION INTERNALS:</strong>
+                <span class="text-emerald-500 font-bold">CO2 > 60s (GREEN):</span> CNS cleared. Roll D6: [1-2] Beastly 3, [3-4] DFW Grappler, [5-6] Hybrid Peak.<br>
+                <span class="text-yellow-500 font-bold">CO2 40-59s (AMBER):</span> CNS fatigue block active. Forced DFW Grappler volume (density focus / zero 1RMs).<br>
+                <span class="text-red-500 font-bold">CO2 &lt; 40s (RED):</span> System completely redlined. Forced Triage (The Wrench / Active Rest Flushes).
+            </div>
         </div>
     </div>
 
-    <!-- MAIN DASHBOARD -->
-    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
         
-        <!-- LEFT/CENTER: THE WEEKLY PROTOCOL -->
         <div class="lg:col-span-8 space-y-6">
             <div class="flex justify-between items-end mb-2 px-2">
                 <div>
-                    <h2 class="font-display text-2xl font-bold text-white uppercase tracking-tight">Tactical Grid</h2>
-                    <p id="current-month-label" class="font-mono text-xs text-brand-purple tracking-widest uppercase mt-1">AWAITING SELECTION</p>
+                    <h2 class="font-display text-2xl font-bold text-white uppercase tracking-tight">Weekly Tactical Grid</h2>
+                    <p id="current-schedule-label" class="font-mono text-xs text-brand-purple tracking-widest uppercase mt-1">ACTIVE HORIZON // HIGHLOW CONSOLIDATION ENGINE</p>
                 </div>
             </div>
-
             <div class="grid gap-4" id="weekly-grid">
-                <!-- JS Injects Day Cards Here -->
-            </div>
+                </div>
         </div>
 
-        <!-- RIGHT: COMMAND CENTER -->
         <div class="lg:col-span-4 space-y-6">
             
-            <!-- OVERRIDE SWITCH -->
-            <div class="glass-card p-6 border-brand-purple/50 relative overflow-hidden">
+            <div class="glass-card p-6 relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-16 h-16 bg-brand-purple/10 rounded-bl-full -mr-8 -mt-8"></div>
                 <h3 class="font-mono text-xs font-bold text-zinc-400 tracking-widest uppercase mb-4 flex items-center gap-2">
-                    <i class="fas fa-sliders-h text-brand-purple"></i> Autoregulation
+                    <i class="fas fa-heartbeat text-brand-purple"></i> Autoregulation Engine
                 </h3>
-                
-                <div class="flex items-center justify-between">
+                <div class="space-y-4">
                     <div>
-                        <span class="text-white font-bold block">No-Gi Override</span>
-                        <span class="text-xs text-zinc-500">Pivots Mon/Tue to protect CNS.</span>
+                        <label class="block text-xs font-mono text-zinc-500 uppercase mb-2">CO2 Tolerance (Seconds)</label>
+                        <div class="relative flex items-center">
+                            <input type="number" id="co2-input" placeholder="e.g. 93" class="w-full bg-zinc-950 border border-zinc-800 rounded py-2.5 px-3 text-white font-mono text-sm focus:border-brand-purple focus:outline-none text-center" oninput="calculateCO2Status()">
+                            <span class="absolute right-3 text-xs font-mono text-zinc-600 font-bold">SEC</span>
+                        </div>
+                        <div id="co2-status" class="text-[10px] font-mono mt-2 text-zinc-500 font-bold uppercase tracking-wider leading-relaxed">AWAITING BIOMETRICS</div>
                     </div>
-                    <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
-                        <input type="checkbox" name="toggle" id="nogi-toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
-                        <label for="nogi-toggle" class="toggle-label block overflow-hidden cursor-pointer"></label>
+
+                    <div class="border-t border-zinc-900 pt-4 space-y-3">
+                        <span class="text-xs font-mono text-zinc-500 uppercase tracking-widest font-bold block">Missed BJJ Fallback Panel</span>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-zinc-400 font-mono">Missed Monday BJJ?</span>
+                            <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+                                <input type="checkbox" name="toggle" id="mon-fallback-toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" onchange="toggleDayFallback('MON')"/>
+                                <label for="mon-fallback-toggle" class="toggle-label block overflow-hidden cursor-pointer"></label>
+                            </div>
+                        </div>
+                        <div id="wed-fallback-row" class="flex items-center justify-between">
+                            <span class="text-xs text-zinc-400 font-mono">Missed Wednesday BJJ?</span>
+                            <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+                                <input type="checkbox" name="toggle" id="wed-fallback-toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" onchange="toggleDayFallback('WED')"/>
+                                <label for="wed-fallback-toggle" class="toggle-label block overflow-hidden cursor-pointer"></label>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-zinc-400 font-mono">Missed Saturday BJJ?</span>
+                            <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+                                <input type="checkbox" name="toggle" id="sat-fallback-toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" onchange="toggleDayFallback('SAT')"/>
+                                <label for="sat-fallback-toggle" class="toggle-label block overflow-hidden cursor-pointer"></label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- STRATAGEM -->
-            <div class="glass-card p-6 highlight-border">
-                <h3 class="font-mono text-xs font-bold text-zinc-400 tracking-widest uppercase mb-3 flex items-center gap-2">
-                    <i class="fas fa-crosshairs text-brand-purple"></i> Monthly Stratagem
-                </h3>
-                <p id="focus-text" class="text-sm text-zinc-300 leading-relaxed font-medium">Loading...</p>
+            <div class="flex space-x-1 border-b border-zinc-800 pb-2 overflow-x-auto">
+                <button onclick="switchTool('ai')" id="tool-btn-ai" class="py-2 px-3 text-[10px] md:text-xs font-bold tab-nav uppercase active mono whitespace-nowrap text-brand-purple">Sentinel AI</button>
+                <button onclick="switchTool('qd')" id="tool-btn-qd" class="py-2 px-3 text-[10px] md:text-xs font-bold tab-nav uppercase mono whitespace-nowrap">Q&D Loop</button>
+                <button onclick="switchTool('snatch')" id="tool-btn-snatch" class="py-2 px-3 text-[10px] md:text-xs font-bold tab-nav uppercase mono whitespace-nowrap">Snatch Pacer</button>
+                <button onclick="switchTool('dfw')" id="tool-btn-dfw" class="py-2 px-3 text-[10px] md:text-xs font-bold tab-nav uppercase mono whitespace-nowrap">DFW Dice</button>
+                <button onclick="switchTool('map')" id="tool-btn-map" class="py-2 px-3 text-[10px] md:text-xs font-bold tab-nav uppercase mono whitespace-nowrap">M.A.P.</button>
             </div>
 
-            <!-- DAILY PRE-FLIGHT -->
-            <div class="glass-card p-6">
-                <h3 class="font-mono text-xs font-bold text-zinc-400 tracking-widest uppercase mb-4 flex items-center gap-2">
-                    <i class="fas fa-clipboard-check text-brand-purple"></i> Pre-Flight Check
+            <div id="tool-ai" class="glass-card p-5 relative overflow-hidden flex flex-col h-[400px]">
+                <h3 class="font-mono text-xs font-bold text-zinc-400 tracking-widest uppercase flex items-center gap-2 mb-4 shrink-0">
+                    <i class="fas fa-brain text-brand-purple animate-pulse"></i> Sentinel AI Architect
                 </h3>
-                <div class="space-y-4">
-                    <label class="flex items-start gap-3 cursor-pointer group">
-                        <div class="w-5 h-5 rounded border border-zinc-600 flex items-center justify-center group-hover:border-brand-purple transition-colors bg-zinc-900 mt-0.5">
-                            <i class="fas fa-check text-brand-purple opacity-0 transition-opacity text-xs"></i>
-                        </div>
-                        <div class="flex-1">
-                            <span class="text-sm text-zinc-200 block font-medium">Magnesium & L-Theanine</span>
-                            <span class="text-xs text-zinc-500 block">Evening down-regulation.</span>
-                        </div>
-                    </label>
-                    <label class="flex items-start gap-3 cursor-pointer group" onclick="toggleWarmup()">
-                        <div class="w-5 h-5 rounded border border-zinc-600 flex items-center justify-center group-hover:border-brand-purple transition-colors bg-zinc-900 mt-0.5">
-                            <i class="fas fa-check text-brand-purple opacity-0 transition-opacity text-xs"></i>
-                        </div>
-                        <div class="flex-1">
-                            <span class="text-sm text-zinc-200 block font-medium">7-Min Pre-Hab Circuit</span>
-                            <span class="text-xs text-zinc-500 block">Perform prior to heavy load. Click to open details.</span>
-                        </div>
-                    </label>
-                    <label class="flex items-start gap-3 cursor-pointer group">
-                        <div class="w-5 h-5 rounded border border-zinc-600 flex items-center justify-center group-hover:border-brand-purple transition-colors bg-zinc-900 mt-0.5">
-                            <i class="fas fa-check text-brand-purple opacity-0 transition-opacity text-xs"></i>
-                        </div>
-                        <div class="flex-1">
-                            <span class="text-sm text-zinc-200 block font-medium">1:4:2 Box Breathing</span>
-                            <span class="text-xs text-zinc-500 block">5 mins post-workout mandatory.</span>
-                        </div>
-                    </label>
+                <div id="chat-messages" class="flex-1 overflow-y-auto space-y-4 mb-4 pr-2 font-mono flex flex-col">
+                    <div class="chat-bubble chat-ai">
+                        <strong>SENTINEL AI:</strong> High-Low framework active. Log daily markers (CO2, joint status, fatigue levels, or training notes) for immediate clinical load optimization against the Slow COMT matrix.
+                    </div>
+                </div>
+                <div class="relative shrink-0">
+                    <input type="text" id="chat-input" placeholder="Query Sentinel AI..." class="w-full bg-zinc-950 border border-zinc-700 rounded-lg py-3 px-4 text-white text-sm mono focus:border-brand-purple focus:outline-none pr-12" onkeypress="if(event.key === 'Enter') sendChatMessage()">
+                    <button onclick="sendChatMessage()" class="absolute right-2 top-2 w-8 h-8 flex items-center justify-center bg-brand-purple text-white rounded-md hover:bg-purple-700 transition">
+                        <i class="fas fa-paper-plane text-xs"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="tool-qd" class="glass-card p-6 space-y-4 relative overflow-hidden hidden">
+                <div class="flex justify-between items-center">
+                    <h3 class="font-mono text-xs font-bold text-zinc-400 tracking-widest uppercase flex items-center gap-2">
+                        <i class="fas fa-stopwatch text-brand-purple animate-pulse"></i> Q&D Alactic Loop Timer
+                    </h3>
+                    <i class="fas fa-volume-up text-zinc-600 text-xs"></i>
+                </div>
+                <div class="bg-zinc-950 p-4 rounded-xl border border-zinc-900 text-center relative">
+                    <div id="metro-flash" class="absolute inset-0 rounded-xl transition-all duration-100 opacity-10"></div>
+                    <div id="timer-display" class="font-display text-5xl font-bold text-white tracking-widest">00:00</div>
+                    <div id="timer-state" class="text-[10px] font-mono text-brand-purple tracking-widest uppercase font-bold mt-2">READY TO DEPLOY</div>
+                </div>
+                
+                <div class="bg-black/40 border border-zinc-900 rounded-lg p-3 text-[10px] font-mono space-y-1.5 text-zinc-500">
+                    <div id="step-0" class="flex justify-between items-center px-1.5 py-0.5 rounded"><span>Min 0:00 - 0:45</span> <span>SPRINT + TGU (L)</span></div>
+                    <div id="step-1" class="flex justify-between items-center px-1.5 py-0.5 rounded"><span>Min 1:00 - 1:45</span> <span>SPRINT + TGU (L)</span></div>
+                    <div id="step-2" class="flex justify-between items-center px-1.5 py-0.5 rounded"><span>Min 1:45 - 4:00</span> <span>COMT REST (2M 15S)</span></div>
+                    <div id="step-3" class="flex justify-between items-center px-1.5 py-0.5 rounded"><span>Min 4:00 - 4:45</span> <span>SPRINT + TGU (R)</span></div>
+                    <div id="step-4" class="flex justify-between items-center px-1.5 py-0.5 rounded"><span>Min 5:00 - 5:45</span> <span>SPRINT + TGU (R)</span></div>
+                    <div id="step-5" class="flex justify-between items-center px-1.5 py-0.5 rounded"><span>Min 5:45 - 8:00</span> <span>COMT REST (2M 15S)</span></div>
+                </div>
+
+                <div class="flex space-x-2">
+                    <button id="btn-qd-control" onclick="toggleQDLoop()" class="flex-1 bg-brand-purple hover:bg-purple-700 text-white font-mono text-xs font-bold py-2.5 rounded-lg transition-all tracking-widest uppercase">START LOOP</button>
+                    <button onclick="stopQDLoop()" class="bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-400 font-bold text-xs py-2.5 px-4 rounded-lg transition-colors">RESET</button>
+                </div>
+                <p class="text-[9px] text-zinc-600 text-center mono uppercase mt-2">Audio Cues & Wake Lock Guard Engaged</p>
+            </div>
+
+            <div id="tool-snatch" class="glass-card p-6 space-y-4 relative overflow-hidden hidden">
+                <div class="flex justify-between items-center">
+                    <h3 class="font-mono text-xs font-bold text-zinc-400 tracking-widest uppercase flex items-center gap-2">
+                        <i class="fas fa-bell text-brand-emerald animate-pulse"></i> Tucson 15/15 Snatch Engine
+                    </h3>
+                    <i class="fas fa-volume-up text-zinc-600 text-xs"></i>
+                </div>
+                <p class="text-[10px] text-zinc-500 font-mono leading-relaxed">Functional SFG1 Snatch Test configuration. 15s WORK / 15s REST alternating loops. Pace target: 7-8 reps per set block.</p>
+                
+                <div class="bg-zinc-950 p-6 rounded-xl border border-zinc-900 text-center relative">
+                    <div id="snatch-flash" class="absolute inset-0 rounded-xl transition-all duration-300 opacity-0 bg-brand-emerald"></div>
+                    <div id="snatch-timer-display" class="font-display text-6xl font-bold text-white tracking-widest relative z-10">10:00</div>
+                    <div id="snatch-timer-state" class="text-xs font-mono text-zinc-500 tracking-widest uppercase font-bold mt-2 relative z-10">AWAITING START</div>
+                    <div id="snatch-rep-tracker" class="text-[10px] font-mono text-brand-emerald tracking-widest uppercase font-bold mt-4 relative z-10 hidden">TARGET REPS: <span id="snatch-rep-count">0</span> / 100+</div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-2 mt-2">
+                    <button id="btn-snatch-control" onclick="toggleSnatchTimer()" class="bg-brand-emerald hover:bg-emerald-600 text-black font-mono text-xs font-bold py-3 rounded-lg transition-all tracking-widest uppercase">
+                        COMMENCE
+                    </button>
+                    <button onclick="resetSnatchTimer()" class="bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-400 font-bold text-xs py-3 rounded-lg transition-colors">
+                        RESET
+                    </button>
+                </div>
+                <p class="text-[9px] text-zinc-600 text-center mono uppercase mt-2">Audio Cues & Wake Lock Guard Engaged</p>
+            </div>
+
+            <div id="tool-dfw" class="glass-card p-6 space-y-4 hidden flex-col items-center justify-center text-center">
+                <h3 class="font-mono text-xs font-bold text-zinc-400 tracking-widest uppercase flex items-center gap-2 self-start">
+                    <i class="fas fa-dice text-brand-purple"></i> Stochastic DFW Selector
+                </h3>
+                <div id="dice-display" class="w-24 h-24 bg-zinc-950 border border-zinc-800 rounded-xl flex items-center justify-center shadow-inner mt-4">
+                    <i id="dice-icon" class="fas fa-dice text-5xl text-zinc-600"></i>
+                </div>
+                <button onclick="rollDice()" class="w-full bg-brand-purple hover:bg-purple-700 text-white font-bold text-xs py-3 rounded-lg transition-colors mono tracking-widest uppercase mt-4">
+                    Roll the Bones
+                </button>
+                <div id="dice-result" class="w-full bg-zinc-950/60 border border-zinc-900 p-4 rounded-lg hidden text-left mt-2">
+                    <div id="dice-category" class="text-sm font-black mono text-brand-purple uppercase mb-1">DETERMINING LOAD...</div>
+                    <p id="dice-desc" class="text-[11px] text-zinc-400 leading-normal"></p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 w-full mt-4 border-t border-zinc-800 pt-4">
+                    <button id="btn-dfw-ladders" onclick="generateDFW(1)" class="btn-toggle text-[10px] py-2 px-2 rounded-lg border border-zinc-800 font-mono">LADDERS (1,2,3)</button>
+                    <button id="btn-dfw-sets" onclick="generateDFW(2)" class="btn-toggle text-[10px] py-2 px-2 rounded-lg border border-zinc-800 font-mono">SETS OF 3</button>
+                </div>
+                <div id="dfw-output" class="w-full bg-zinc-950/60 p-3 rounded-xl border border-zinc-900 text-xs font-mono text-left hidden">
+                    <div class="text-brand-purple font-black uppercase text-[10px]">ALACTIC PATHWAY:</div>
+                    <p id="dfw-scheme" class="text-zinc-300 mt-1 text-[11px]"></p>
+                    <span class="text-[10px] text-zinc-500 block leading-relaxed italic border-t border-zinc-900 mt-2 pt-2">No shoulder presses. Keeps lats flared and biceps packed.</span>
+                </div>
+            </div>
+
+            <div id="tool-map" class="glass-card p-6 space-y-4 hidden">
+                <h3 class="font-mono text-xs font-bold text-zinc-400 tracking-widest uppercase flex items-center gap-2">
+                    <i class="fas fa-tachometer-alt text-brand-purple"></i> M.A.P. Engine Calculator
+                </h3>
+                <div class="flex space-x-2">
+                    <button id="btn-yosuda" onclick="setModality('yosuda')" class="btn-toggle active flex-1 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider font-mono">YOSUDA</button>
+                    <button id="btn-kb" onclick="setModality('kb')" class="btn-toggle flex-1 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider font-mono">KETTLEBELL</button>
+                </div>
+                <div class="bg-zinc-950/60 p-3 rounded-lg border border-zinc-900">
+                    <label id="input-label" class="block text-[10px] font-mono text-zinc-500 uppercase mb-2">Maximum Aerobic Power (RPM at Lvl 10)</label>
+                    <div class="relative flex items-center">
+                        <input type="number" id="map-input" placeholder="e.g. 60" class="w-full bg-zinc-950 border border-zinc-800 rounded py-2 px-3 text-white font-mono text-sm focus:border-brand-purple focus:outline-none text-center" oninput="calculateMAP()">
+                        <span id="input-unit" class="absolute right-3 text-xs font-mono text-zinc-600 font-bold">RPM</span>
+                    </div>
+                </div>
+                <div id="map-zones" class="space-y-2.5 hidden">
+                    <div class="bg-zinc-900/30 p-2.5 rounded border border-zinc-900 flex justify-between items-center text-xs">
+                        <span class="text-blue-400 font-mono font-bold uppercase">Aerobic Base (70%):</span>
+                        <span id="zone-base" class="text-white font-mono font-bold">-- RPM</span>
+                    </div>
+                    <div class="bg-zinc-900/30 p-2.5 rounded border border-zinc-900 flex justify-between items-center text-xs">
+                        <span class="text-yellow-400 font-mono font-bold uppercase">Lactate Clear (90/50%):</span>
+                        <span id="zone-clear" class="text-white font-mono font-bold">-- / -- RPM</span>
+                    </div>
+                    <div class="bg-zinc-900/30 p-2.5 rounded border border-zinc-900 flex justify-between items-center text-xs">
+                        <span class="text-red-500 font-mono font-bold uppercase">Alactic RSA (130%):</span>
+                        <span id="zone-alactic" class="text-white font-mono font-bold">-- RPM</span>
+                    </div>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <style>
-        /* Checkbox hack for custom checklist */
-        input[type="checkbox"] { display: none; }
-        input[type="checkbox"]:checked + label div i { opacity: 1; }
-        label input[type="checkbox"]:checked ~ div:first-of-type { border-color: #9333ea; }
-        label input[type="checkbox"]:checked ~ div:first-of-type i { opacity: 1; }
-    </style>
+    <section class="max-w-7xl mx-auto glass-card p-6 md:p-8 mb-8">
+        
+        <div class="flex border-b border-zinc-800 pb-2 mb-6 overflow-x-auto">
+            <button onclick="switchDocTab('singles')" id="tab-singles" class="tab-nav active mono text-sm font-bold tracking-widest mr-8 uppercase whitespace-nowrap">Heavy Singles</button>
+            <button onclick="switchDocTab('snatch')" id="tab-snatch" class="tab-nav mono text-sm font-bold tracking-widest uppercase whitespace-nowrap">SFG1 Snatch Doctrine</button>
+            <button onclick="switchDocTab('reset')" id="tab-reset" class="tab-nav mono text-sm font-bold tracking-widest uppercase whitespace-nowrap">Neuro-Vagal Reset</button>
+        </div>
+        
+        <div id="doc-singles" class="space-y-6">
+            <div class="bg-orange-500/10 border-l-4 border-orange-500 p-4 rounded">
+                <h3 class="text-orange-500 font-bold mono text-sm tracking-widest mb-2">THE AUTOREGULATED SINGLES PROTOCOL</h3>
+                <p class="text-zinc-300 text-sm leading-relaxed mb-3"><strong>No Sets. No Clusters. No Grinding.</strong> Because of your ACTN3/Slow COMT profile, forcing a volume of 12-15 reps is a biological trap that triggers massive IL-6 inflammation. We execute <strong>Velocity-Capped Volume.</strong></p>
+                <p class="text-zinc-300 text-sm leading-relaxed"><strong>The Execution:</strong> Clean & Press Left (1 Rep). Park it. Clean & Press Right (1 Rep). Park it. Walk away until 100% nasal breathing and neurological hunger returns.</p>
+            </div>
+
+            <div>
+                <h3 class="mono text-lg font-bold text-white mb-4 border-b border-zinc-800 pb-2">THE MANDATORY SEQUENCE</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-lg relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+                        <h4 class="text-white font-bold mono text-md mb-1">1. MILITARY PRESS</h4>
+                        <p class="text-xs text-zinc-400 mb-2">Requires fresh lats to create the Fabio Zonin "Lat Flare". Never press after you pull or squat.</p>
+                        <div class="bg-zinc-950 p-2 rounded text-[10px] mono text-blue-400 inline-block">TARGET: 3-6 SINGLES</div>
+                    </div>
+                    <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-lg relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-yellow-500"></div>
+                        <h4 class="text-white font-bold mono text-md mb-1">2. PISTOL SQUAT</h4>
+                        <p class="text-xs text-zinc-400 mb-2">Relies on leg absolute force while giving your lats, triceps, and shoulders a 15-minute active recovery window.</p>
+                        <div class="bg-zinc-950 p-2 rounded text-[10px] mono text-yellow-400 inline-block">TARGET: 3-6 SINGLES</div>
+                    </div>
+                    <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-lg relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>
+                        <h4 class="text-white font-bold mono text-md mb-1">3. TACTICAL PULL-UP</h4>
+                        <p class="text-xs text-zinc-400 mb-2">The most forgiving of localized fatigue. A raw display of ACTN3 yielding strength. The ultimate finisher.</p>
+                        <div class="bg-zinc-950 p-2 rounded text-[10px] mono text-emerald-400 inline-block">TARGET: 3-6 SINGLES</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="doc-snatch" class="hidden space-y-6">
+            <div class="bg-brand-emerald/10 border-l-4 border-brand-emerald p-6 rounded-lg">
+                <h3 class="text-brand-emerald font-bold mono text-lg tracking-widest mb-2"><i class="fas fa-biohazard mr-2"></i>THE GOLDEN RULE OF THE SNATCH TEST</h3>
+                <p class="text-zinc-300 leading-relaxed text-sm"><strong>"Tests are tests, not training protocols."</strong> Do not attempt the 5-minute 100-rep test in training. Running the test to failure will rock your CNS, spike your IL-6 inflammation, and drastically increase the risk of tearing your hands. We train the specific bioenergetic pathways (Alactic/Aerobic) to make the test feel like a formality.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-zinc-900 border border-zinc-800 p-5 rounded-lg">
+                    <h4 class="text-white font-bold mono text-md mb-3 border-b border-zinc-800 pb-2">STRATEGY 1: TUCSON 15/15 (THE V02 MAX)</h4>
+                    <p class="text-xs text-zinc-400 mb-4 leading-relaxed">The ultimate pacing protocol to build capacity without burnout. Start with a 16kg-20kg bell, working up to the 24kg.</p>
+                    <ul class="space-y-2 text-sm text-zinc-300">
+                        <li><i class="fas fa-angle-right text-brand-emerald mr-2"></i><strong>0-15s:</strong> Snatch Right (Aim for 7-8 reps)</li>
+                        <li><i class="fas fa-angle-right text-brand-emerald mr-2"></i><strong>15-30s:</strong> Rest / Shake it out</li>
+                        <li><i class="fas fa-angle-right text-brand-emerald mr-2"></i><strong>30-45s:</strong> Snatch Left (Aim for 7-8 reps)</li>
+                        <li><i class="fas fa-angle-right text-brand-emerald mr-2"></i><strong>45-60s:</strong> Rest</li>
+                    </ul>
+                    <div class="mt-4 bg-zinc-950 p-2 rounded border border-zinc-800 text-[10px] mono text-brand-emerald text-center font-bold">
+                        10 MINUTES = 140+ REPS CAPACITY
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 border border-zinc-800 p-5 rounded-lg">
+                    <h4 class="text-white font-bold mono text-md mb-3 border-b border-zinc-800 pb-2">STRATEGY 2: Q&D / A.X.E. (THE ALACTIC)</h4>
+                    <p class="text-xs text-zinc-400 mb-4 leading-relaxed">Pavel's anti-glycolytic formulas to protect the fast-twitch fibers from lactic acid.</p>
+                    <ul class="space-y-2 text-sm text-zinc-300">
+                        <li><strong class="text-white">Q&D Series (20 reps):</strong> Either 4 sets of 5 reps (every 30s) or 2 sets of 10 reps (EMOM). Left and Right arms are separate events.</li>
+                        <li><strong class="text-white">A.X.E. Format:</strong> 4 to 5 reps Every Minute On the Minute (EMOM) for 10-20 minutes with a heavy bell.</li>
+                        <li><strong class="text-red-400">Kill-Switches:</strong> Speed drop, tempo drop, form degradation, talk test failure, or muscle burning.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-zinc-900 border border-zinc-800 p-5 rounded-lg md:col-span-2">
+                    <h4 class="text-white font-bold mono text-md mb-3 border-b border-zinc-800 pb-2">BIOMECHANICS & HAND CARE</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <strong class="text-brand-purple block mb-1 text-sm">Snatch Walking (Pacing Tool)</strong>
+                            <p class="text-xs text-zinc-400 leading-relaxed">Use a light bell (15-20% BW). Snatch overhead, take one step forward. Snatch, step backward. Forces you to lock out, pace yourself, and match your breath biomechanically to the movement.</p>
+                        </div>
+                        <div>
+                            <strong class="text-brand-purple block mb-1 text-sm">Tame The Arc (Hand Care)</strong>
+                            <p class="text-xs text-zinc-400 leading-relaxed">The biggest limiter is tearing a callus. Keep the bell path vertical like zipping a jacket. Do not "cast" it out like a fishing rod on the drop. Lead with the watch on the way up, punch through the handle to save the skin.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="doc-reset" class="hidden space-y-6">
+            <div class="bg-purple-950/30 border-l-4 border-brand-purple p-5 rounded-lg">
+                <h4 class="text-white font-bold font-display text-lg uppercase mb-2">Simhasana Protocol (The Tongue Stretch Reset)</h4>
+                <p class="text-sm text-zinc-300 leading-relaxed">
+                    Stretching the tongue completely down-regulates a hyper-aroused sympathetic nervous system. It creates a mechanical traction effect along the **Glossopharyngeal-Vagus Highway (CN IX & X)**, forcing a down-regulation shift for your Slow COMT engine.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-xs text-zinc-400">
+                <div class="bg-zinc-950 p-4 rounded-xl border border-zinc-900">
+                    <strong class="text-white block mb-1 uppercase text-brand-purple">01. Max Extension</strong>
+                    Extend tongue down toward the chin to its absolute limit. Hold for 40 seconds. Maintain soft, slow abdominal breathing patterns.
+                </div>
+                <div class="bg-zinc-950 p-4 rounded-xl border border-zinc-900">
+                    <strong class="text-white block mb-1 uppercase text-brand-purple">02. Audible Release</strong>
+                    Perform an audible "Haa" exhale from the throat while opening eyes wide. Drop jaw muscle tone completely to disengage CT-junction splinting.
+                </div>
+                <div class="bg-zinc-950 p-4 rounded-xl border border-zinc-900">
+                    <strong class="text-white block mb-1 uppercase text-brand-purple">03. Repetition Array</strong>
+                    Perform exactly 3 blocks of 40 seconds immediately post-op following late Monday No-Gi sessions before initializing your 1:4:2 down-regulation box breathing.
+                </div>
+            </div>
+        </div>
+
+    </section>
 
     <script>
-        // Checkbox listener logic for custom checkboxes
-        document.querySelectorAll('.space-y-4 label').forEach(label => {
-            label.addEventListener('click', function() {
-                const icon = this.querySelector('i');
-                const box = this.querySelector('div:first-child');
-                if (icon) {
-                    if (icon.classList.contains('opacity-0')) {
-                        icon.classList.remove('opacity-0');
-                        box.classList.add('border-brand-purple');
-                    } else {
-                        icon.classList.add('opacity-0');
-                        box.classList.remove('border-brand-purple');
-                    }
+        // --- SCREEN WAKE LOCK API ---
+        let wakeLock = null;
+        async function requestWakeLock() {
+            try {
+                if ('wakeLock' in navigator) {
+                    wakeLock = await navigator.wakeLock.request('screen');
+                    console.log('Wake Lock is active');
                 }
-            });
-        });
-
-        // --- PRE-HAB PANEL LOGIC ---
-        const warmupTrigger = document.getElementById('warmup-trigger');
-        const warmupPanel = document.getElementById('warmup-panel');
-        const warmupOverlay = document.getElementById('warmup-overlay');
-        const closeWarmup = document.getElementById('close-warmup');
-
-        function toggleWarmup() {
-            const isClosed = warmupPanel.classList.contains('translate-x-full');
-            if (isClosed) {
-                warmupPanel.classList.remove('translate-x-full');
-                warmupOverlay.classList.remove('hidden');
-            } else {
-                warmupPanel.classList.add('translate-x-full');
-                warmupOverlay.classList.add('hidden');
+            } catch (err) {
+                console.log(`Wake Lock Error: ${err.name}, ${err.message}`);
+            }
+        }
+        function releaseWakeLock() {
+            if (wakeLock !== null) {
+                wakeLock.release().then(() => {
+                    wakeLock = null;
+                    console.log('Wake Lock released');
+                });
             }
         }
 
-        warmupTrigger.addEventListener('click', toggleWarmup);
-        closeWarmup.addEventListener('click', toggleWarmup);
-        warmupOverlay.addEventListener('click', toggleWarmup);
-
-        // Toggle Logic
-        let noGiActive = false;
-        document.getElementById('nogi-toggle').addEventListener('change', function(e) {
-            noGiActive = e.target.checked;
-            updateDashboard();
-        });
-
-        // FULL MASTER PLAN DATA (V6.0)
-        const protocols = {
-            1: {
-                title: "INTEGRITY",
-                months: {
-                    FEB: {
-                        focus: "Depth Charge & Tendon Hardening.",
-                        mon: { title: "Armor Light", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>Mace 360s</strong>: 3x10. 2. <strong>The SFG 3 (Light)</strong>: Groove pattern.</span><span class="text-zinc-300 text-sm block">1. <strong>Gladiator DL</strong>: 2-3 sets x 5 reps/side. 2. <strong>Wrist Extensors</strong>.</span>` },
-                        tue: { title: "Heavy Mission", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>Press & Pull (32kg+)</strong>: Ladders (1,2,3). Priority is pain-free pressing.</span><span class="text-zinc-300 text-sm block">2. <strong>Pistol (24kg)</strong>: High Box. 5x3. Vertical Tibia.</span>` },
-                        thu: { title: "Alactic Engine", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>Bottoms-Up Cleans</strong> (24kg). 5x5 ramping to 8x5.</span><span class="text-zinc-300 text-sm block">2. <strong>Towel Swings</strong>. 10 sets x 5 reps (EMOM).</span>` }
-                    },
-                    MAR: {
-                        focus: "Mastering the 32kg threshold to bypass neural inhibition.",
-                        mon: { title: "Armor Light", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>The SFG 3 (20-24kg)</strong>: 3-5 sets of 2-3 reps. The Wedge focus.</span><span class="text-zinc-300 text-sm block">2. <strong>Statue of Liberty Walk</strong>: 3x30m @ <strong>32kg</strong>. Zero spinal extension.</span>` },
-                        tue: { title: "Heavy Mission", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>Press & Pull (32kg+)</strong>: Ladders (1,2,3). Drop weight if grinding.</span><span class="text-zinc-300 text-sm block">2. <strong>Box Pistol</strong>: 24kg @ 18-inch Box. 3-5 sets x 3 reps.</span>` },
-                        thu: { title: "Grip & Snap", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>Heavy Suitcase Carry</strong>: 36kg (15s per side) + <strong>Static BU Hold</strong> (24kg).</span><span class="text-zinc-300 text-sm block">2. <strong>Towel Swings</strong>: 24kg. 10 sets x 5 reps. "Rip the Towel".</span>` }
-                    }
-                }
-            },
-            2: {
-                title: "DENSITY & VOLUME",
-                months: {
-                    APR: {
-                        focus: "Neural Density I: Singles Initialization & QL Armor.",
-                        mon: { title: "Armor Light", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>SFG1 Skills (24kg)</strong>: Practice, do not train. Keep HR Low.</span><span class="text-zinc-300 text-sm block">2. <strong>Gladiator DL</strong>: 3 sets x 5 reps/side (24kg+).</span>` },
-                        tue: { title: "Heavy Mission", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>Press/Pull (32kg+)</strong>. 3-6 Singles. Rest until ready. Zero ego.</span><span class="text-brand-purple text-xs font-bold block mt-2">OVERRIDE: If Concentric Fails, Push-Press to a 5s controlled eccentric negative.</span>` },
-                        thu: { title: "Overspeed Eccentric", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>Power Swings</strong> (32kg). 10 to 15 sets x 5 reps.</span><span class="text-zinc-300 text-sm block">2. <strong>Snatch Skill</strong> (24kg). 5 sets x 5L/5R.</span>` }
-                    },
-                    MAY: {
-                        focus: "Consolidation. Autoregulated Singles & SFG1 Practice.",
-                        mon: { title: "Armor Light", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>SFG1 Skills (24kg)</strong>: Double bell familiarization. Cleans, Squats.</span><span class="text-zinc-300 text-sm block">2. <strong>Gladiator DL</strong>: 3 sets x 5 reps/side (32kg target).</span>` },
-                        tue: { title: "Heavy Mission", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>The SFG 3 (32kg+)</strong>: Press -> Pistol -> Pull.</span><span class="text-zinc-300 text-sm block">2. 3-6 Singles per side. Velocity capped. Pain-free max.</span>` },
-                        thu: { title: "Heavy Engine", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>Heavy Swings</strong> (32-40kg). 10 sets x 5 reps (Dead Stop).</span><span class="text-zinc-300 text-sm block">2. <strong>Snatch Density</strong> (24kg). 10 sets x 6L/6R.</span>` }
-                    },
-                    JUN: {
-                        focus: "Systemic Strength for BJJ Translation.",
-                        mon: { title: "Armor Light", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>SFG1 Skills (24-28kg)</strong>: TGU Polish. Snatch pacing.</span><span class="text-zinc-300 text-sm block">2. <strong>Gladiator DL</strong>: 3 sets x 5 reps/side (Maintain).</span>` },
-                        tue: { title: "Heavy Mission", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>Press/Pull (32kg+)</strong>. 3-6 Singles. Rest until 100% ready.</span><span class="text-brand-purple text-xs font-bold block mt-2">RULE #3: The second your speed drops, the set is over.</span>` },
-                        thu: { title: "Volume Tolerance", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>Swings</strong> (32-40kg). 10 sets x 10 reps (100 total).</span><span class="text-zinc-300 text-sm block">2. <strong>Snatch</strong> (24kg). 5 sets x 10L/10R.</span>` }
-                    }
-                }
-            },
-            3: {
-                title: "SFG1 PREP",
-                months: {
-                    JUL: {
-                        focus: "Transitioning to Double 24kg Volume.",
-                        mon: { title: "SFG1 Skill", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>SFG1 Skills (2x24kg)</strong>: Double Cleans & Squats. 3-5 sets of 2-3 reps.</span><span class="text-zinc-300 text-sm block">2. <strong>Static Rack Holds</strong>: 3x20s @ <strong>32kg</strong>.</span>` },
-                        tue: { title: "Heavy Mission", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>Double Press/Front Squat</strong> (2x24kg). 5 sets x 2-3 reps.</span><span class="text-zinc-300 text-sm block">2. <strong>Pull-Up (32kg+)</strong>: Heavy Singles. 3-6 reps total.</span>` },
-                        thu: { title: "Snatch Engine", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>Snatch Intervals</strong> (24kg). 15s Work : 45s Rest.</span><span class="text-zinc-300 text-sm block">2. Volume: 10-15 Rounds. Explosive power, zero burn.</span>` }
-                    },
-                    AUG: {
-                        focus: "Double 24kg Density for SFG1.",
-                        mon: { title: "SFG1 Skill", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>The SFG 3 (24kg)</strong>: TGU and Snatch pacing.</span><span class="text-zinc-300 text-sm block">2. <strong>Waiter Walks</strong>: 3x30m @ 24kg.</span>` },
-                        tue: { title: "SFG1 Heavy Day", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>Double Clean & Press</strong> (2x24kg). 5 ladders of 1, 2, 3.</span><span class="text-zinc-300 text-sm block">2. <strong>Double Front Squat</strong> (2x24kg). 3 sets x 5 reps.</span>` },
-                        thu: { title: "Snatch Capacity", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>Snatch Intervals</strong> (24kg). 15s Work : 30s Rest (Density increased).</span><span class="text-zinc-300 text-sm block">2. Volume: 12-18 Rounds. Rhythm and relaxation.</span>` }
-                    },
-                    SEP: {
-                        focus: "SFG1 Peaking and The 5-Minute Snatch Test.",
-                        mon: { title: "SFG1 Skill", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>SFG1 Skills (2x24kg)</strong>: Complexes. 3-5 sets of 2 reps. Perfect groove.</span><span class="text-zinc-300 text-sm block">2. <strong>Double Static Rack Holds</strong>: 3x15s @ 2x24kg.</span>` },
-                        tue: { title: "SFG1 Rehearsal", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>Double 24kg Complexes</strong>: 1 Clean, 1 Press, 1 Squat. (x5 rounds).</span><span class="text-zinc-300 text-sm block">2. <strong>Heavy TGU</strong>: 32kg. 3 singles per side.</span>` },
-                        thu: { title: "Test Prep", content: `<span class="text-zinc-300 text-sm block mb-1">1. <strong>Snatch Test Rehearsal</strong> (24kg). 20 Rounds (15s on / 15s off).</span><span class="text-zinc-300 text-sm block">2. Target: 5 reps per 15s interval (=100 reps).</span>` }
-                    }
-                }
-            },
-            4: {
-                title: "TAPER & PEAK",
-                months: {
-                    OCT: {
-                        focus: "SFG1 Certification Weekend.",
-                        mon: { title: "Decompression", content: `<span class="text-zinc-300 text-sm block mb-1"><strong>Weeks 1 & 2:</strong> 15 mins of Shin Boxes, 90-90 breathing, and light walking.</span><span class="text-brand-purple text-xs font-bold block mt-2">NO GLADIATORS. NO HEAVY LOAD. Let the CNS recover.</span>` },
-                        tue: { title: "Cut & Prime", content: `<span class="text-zinc-300 text-sm block mb-1"><strong>Week 1 (50% Load):</strong> Double 16kg Press/Squat. 3x3 reps. Easy.</span><span class="text-zinc-300 text-sm block"><strong>Week 2 (Neural Prime):</strong> Floor Press (24kg). 3x5 explosive. No legs.</span>` },
-                        thu: { title: "Mobility Flush", content: `<span class="text-zinc-300 text-sm block mb-1"><strong>Week 1:</strong> 24kg Swings. 5 sets x 10 reps.</span><span class="text-zinc-300 text-sm block"><strong>Week 2:</strong> Walking & Visualisation ONLY.</span>` }
-                    }
-                }
-            }
-        };
-
-        const staticDays = {
-            WED: { title: "BJJ Flow / Reset", icon: "fa-yin-yang", content: "<strong>Coaching Day:</strong> 10k+ steps.<br><strong>BJJ:</strong> Flow/Drill only. Use Red Light Belt on left shoulder during commute." },
-            FRI: { title: "Deep Rest", icon: "fa-bed", content: "<strong>CNS Reboot:</strong> Non-negotiable OFF day. Deep Tissue Therapy if booked." },
-            SAT: { title: "War Day", icon: "fa-fire", content: "<strong>BJJ Application:</strong> High arousal rounds. Let the strength translate to the mats." },
-            SUN: { title: "Zone 2 Ruck", icon: "fa-leaf", content: "<strong>Vagal Reset:</strong> HR < 120bpm. Nature Exposure. Nasal breathing only." }
-        };
-
-        let currentPhase = 2;
-        let currentMonthKey = null;
-
-        document.addEventListener('DOMContentLoaded', () => {
-            loadState();
-            startCountdown();
-        });
-
-        function setPhase(phaseNum) {
-            currentPhase = phaseNum;
-            document.querySelectorAll('.nav-pill').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`btn-p${phaseNum}`).classList.add('active');
-
-            const phaseData = protocols[phaseNum];
-            const monthContainer = document.getElementById('month-container');
-            monthContainer.innerHTML = ''; 
-
-            const months = Object.keys(phaseData.months);
-            if (!months.includes(currentMonthKey)) currentMonthKey = months[0];
-
-            months.forEach(m => {
-                const btn = document.createElement('button');
-                btn.className = `nav-pill px-4 py-1.5 rounded text-xs font-bold transition-colors ${m === currentMonthKey ? 'active' : ''}`;
-                btn.innerText = m;
-                btn.onclick = () => setMonth(m);
-                monthContainer.appendChild(btn);
-            });
-
-            updateDashboard();
-            localStorage.setItem('sentinel_v6_phase', phaseNum);
+        // --- AUDIO METRONOME / BEEP API ---
+        let audioCtx = null;
+        function initAudio() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
         }
 
-        function setMonth(monthKey) {
-            currentMonthKey = monthKey;
-            Array.from(document.getElementById('month-container').children).forEach(btn => {
-                btn.classList.toggle('active', btn.innerText === monthKey);
-            });
+        function playTone(freq, type, duration, vol = 1) {
+            initAudio();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+            osc.start(audioCtx.currentTime);
+            osc.stop(audioCtx.currentTime + duration);
+        }
+
+        function playSprintBeep() {
+            playTone(900, 'square', 0.1);
+            setTimeout(() => playTone(900, 'square', 0.1), 150);
+            setTimeout(() => playTone(1200, 'square', 0.2), 300);
+        }
+
+        function playTguBeep() {
+            playTone(600, 'triangle', 0.4);
+        }
+
+        function playRestBeep() {
+            playTone(300, 'sine', 0.6);
+        }
+
+        // --- SENTINEL AI GEM (GEMINI API) ---
+        async function fetchWithBackoff(url, options, retries = 5) {
+            const delays = [1000, 2000, 4000, 8000, 16000];
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(url, options);
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    return await response.json();
+                } catch (error) {
+                    if (i === retries - 1) throw error;
+                    console.log(`Sentinel AI connection retry ${i + 1}...`);
+                    await new Promise(res => setTimeout(res, delays[i]));
+                }
+            }
+        }
+
+        async function sendChatMessage() {
+            const inputEl = document.getElementById('chat-input');
+            const message = inputEl.value.trim();
+            if (!message) return;
+
+            const chatBox = document.getElementById('chat-messages');
+            chatBox.innerHTML += `<div class="chat-bubble chat-user">${message}</div>`;
+            inputEl.value = '';
+            
+            const loadingId = 'loading-' + Date.now();
+            chatBox.innerHTML += `<div id="${loadingId}" class="chat-bubble chat-ai italic opacity-70">ANALYZING BIOMETRICS...</div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            const apiKey = ""; 
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+
+            const systemPrompt = `You are SENTINEL ARCHITECT, an elite tactical strength computer for a 44-year-old male BJJ athlete. Your tone is robotic, extremely concise, and devoid of conversational filler.
+The athlete has ACTN3 (Fast Twitch), Slow COMT (requires calm focus), IL-6 GG (high inflammation, needs 72hrs between max loads), and COL5A1 (strong, stiff tendons).
+He hates waffle. He wants his numbers, schedule grids, and targets immediately.
+
+THE BJJ FIXED CALENDAR CONFIGURATION:
+* Monday Evening: No-Gi BJJ (9-10 PM late-night high catecholamine/arousal loop)
+* Wednesday Evening: Gi BJJ (High grip matrix strain)
+* Saturday Morning: Gi BJJ (War Day / Sparring output density)
+
+When answering queries, prioritize clinical terminal tables. Assess markers directly and present the matrix without prose headers or sign-off fluff. Remind them of the Rule 3 velocity kill-switch and post-op 1:4:2 breathing. Always add the quick string: "CHECK-IN: Did you train BJJ?"`;
+
+            const co2Val = document.getElementById('co2-input').value || 'Unknown';
+            const contextData = `[SYSTEM TELEMETRY - Season: ${currentSeason}, Active Strategy: ${currentStrategy}, CO2 Tolerance: ${co2Val}s]\nUser Input: `;
+
+            const payload = {
+                contents: [{ parts: [{ text: contextData + message }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            };
+
+            try {
+                const data = await fetchWithBackoff(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                document.getElementById(loadingId).remove();
+                
+                if (data.candidates && data.candidates[0].content.parts[0].text) {
+                    const aiText = data.candidates[0].content.parts[0].text.replace(/\n/g, '<br>');
+                    chatBox.innerHTML += `<div class="chat-bubble chat-ai"><strong>SENTINEL:</strong><br>${aiText}</div>`;
+                } else {
+                    chatBox.innerHTML += `<div class="chat-bubble chat-ai text-red-400"><strong>SYSTEM ERROR:</strong> Telemetry unreadable. Please recalibrate.</div>`;
+                }
+            } catch (err) {
+                document.getElementById(loadingId).remove();
+                chatBox.innerHTML += `<div class="chat-bubble chat-ai text-red-400"><strong>CONNECTION FAILED:</strong> Neural link severed. Try again.</div>`;
+            }
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // --- CALENDAR ENGINES ---
+        let currentSeason = 'summer'; 
+        let currentStrategy = 'beastly'; 
+        let fallbacksActive = { MON: false, WED: false, SAT: false };
+
+        const fallbackContent = `<span class="text-zinc-400 block mb-1">Deploying <strong>Yosuda & TGU Q&D Matrix</strong> active recovery flush.</span><span class="text-zinc-400 block">1. 15s Yosuda Sprint (Level 10) + 1 TGU each side on Q&D Timer. <br>2. <strong>Rounds based on CO2 Status (See Autoregulation Engine).</strong> Active fluid drainage.</span><span class="text-brand-emerald text-xs font-bold block mt-2"><i class="fas fa-shield-alt mr-1"></i> ACTIVE RECOVERY FLUSH</span>`;
+
+        function getDynamicSchedule() {
+            let liftingDayContent = '';
+
+            if (currentStrategy === 'beastly') {
+                liftingDayContent = `
+                    <span class="text-zinc-100 block font-bold mb-1"><i class="fa-solid fa-fire text-brand-purple mr-1.5"></i>BEASTLY 3 ABSOLUTE FORCE</span>
+                    <span class="text-zinc-400 block mb-1">1. <strong>Strict Overhead Press</strong> (32kg-40kg): 3-6 Autoregulated Singles.</span>
+                    <span class="text-zinc-400 block mb-1">2. <strong>Box Pistol Squats</strong> (24kg-32kg @ 18" Box): 3-6 Singles per side.</span>
+                    <span class="text-zinc-400 block">3. <strong>Tactical Pull-Ups</strong>: 3-6 Singles. Focus on chin-clearance.</span>
+                    <span class="text-brand-purple text-xs font-bold block mt-2"><i class="fas fa-hourglass-half mr-1"></i> AUTOREGULATED REST (2-4 MINS)</span>
+                `;
+            } else if (currentStrategy === 'dfw') {
+                liftingDayContent = `
+                    <span class="text-zinc-100 block font-bold mb-1"><i class="fa-solid fa-layer-group text-brand-purple mr-1.5"></i>DFW GRAPPLER SYSTEM</span>
+                    <span class="text-zinc-400 block mb-1">1. <strong>Stochastic DFW Ladder Setup</strong>: Set clock to exactly 20 minutes.</span>
+                    <span class="text-zinc-400 block mb-1">2. <strong>Asymmetric Load</strong>: 1 Clean & Front Squat (L). Switch hands. 1 C&FS (R). Rest.</span>
+                    <span class="text-zinc-400 block">3. Step up to 2 reps, then 3 reps. Repeat 1, 2, 3 loop with heavy bells.</span>
+                    <span class="text-brand-purple text-xs font-bold block mt-2"><i class="fas fa-infinity mr-1"></i> METABOLIC POWER WITHOUT LACTIC ACCUMULATION</span>
+                `;
+            } else if (currentStrategy === 'hybrid') {
+                liftingDayContent = `
+                    <span class="text-zinc-100 block font-bold mb-1"><i class="fa-solid fa-bolt-lightning text-brand-purple mr-1.5"></i>THE HYBRID PEAK</span>
+                    <span class="text-zinc-400 block mb-1">1. <strong>Beastly 3 Max Singles Block</strong>: Press & Pull (32kg-40kg). Hit exactly 3 perfect max-velocity singles per arm.</span>
+                    <span class="text-zinc-400 block mb-1">2. <strong>DFW Grappler Finisher</strong>: 10-15 Minutes. Double 24s Clean & Squat ladders (1, 2, 3 reps).</span>
+                    <span class="text-brand-purple text-xs font-bold block mt-2"><i class="fas fa-award mr-1"></i> ADVANCED GRAPPLER OPTIMIZATION (1-2X PER WEEK ONLY)</span>
+                `;
+            }
+
+            const summer = {
+                MON: { title: "No-Gi BJJ (9:00 PM - 10:00 PM)", content: `<span class="text-zinc-400 block mb-1"><strong>Afternoon Matrix:</strong> Q&D Snatch Ballistic Engine (044C). PAP Priming block active.</span><span class="text-zinc-400 block"><strong>Evening Block:</strong> High-arousal CLA Scrambles. Protect C-T junction.</span><span class="text-brand-purple text-xs font-bold block mt-2"><i class="fas fa-biohazard mr-1"></i> ADRENALINE PROFILE CLUSTER</span>` },
+                TUE: { title: "Day Off // Deep Rest", content: `<span class="text-zinc-400 block mb-1">Total physical & neural black zone. 1:4:2 Box Breathing execution. Flush Monday late-night catecholamines.</span><span class="text-brand-purple text-xs font-bold block mt-2"><i class="fas fa-heartbeat mr-1"></i> PARASYMPATHETIC CLEARANCE PHASE</span>` },
+                WED: { title: "Gi BJJ (KODA:MA)", content: `<span class="text-zinc-400 block mb-1">High friction grip matrix. Settle lats deep into specific frames. Use thumbless monkey grip mechanics.</span><span class="text-brand-purple text-xs font-bold block mt-2"><i class="fas fa-shield-alt mr-1"></i> GRIP ISOMETRIC TAX ACTIVE</span>` },
+                THU: { title: "Lifting Session // Thu", content: liftingDayContent },
+                FRI: { title: "Day Off // System Recovery", content: `<span class="text-zinc-400 block mb-1"><strong>IL-6 Clearance window:</strong> Complete structural unloading. Pre-hab alignment matrix.</span><span class="text-zinc-400 block">Deploy Starrett Dip Isometrics, kettlebell arm-bars, and deep front line un-gluing.</span><span class="text-brand-purple text-xs font-bold block mt-2"><i class="fas fa-wind mr-1"></i> NEURAL RECOVERY CYCLE</span>` },
+                SAT: { title: "Gi BJJ (War Day)", content: `<span class="text-zinc-400 block mb-1">Uncapped competition matching rows. Maximum systemic load execution block.</span>` },
+                SUN: { title: "Autoregulated Options", content: `<span class="text-zinc-400 block mb-1">CO2 &gt; 60s: Execute custom structural accessory/swing configurations.</span><span class="text-zinc-400 block">CO2 &lt; 60s: Force 45-minute strict nasal Zone 2 Ruck.</span>` }
+            };
+
+            const winter = {
+                MON: { title: "No-Gi BJJ (9:00 PM - 10:00 PM)", content: `<span class="text-zinc-400 block mb-1"><strong>Afternoon Matrix:</strong> Q&D Snatch Ballistic Engine (044C). PAP Priming block active.</span><span class="text-zinc-400 block"><strong>Evening Block:</strong> High-arousal CLA Scrambles. Protect C-T junction.</span><span class="text-brand-purple text-xs font-bold block mt-2"><i class="fas fa-biohazard mr-1"></i> ADRENALINE PROFILE CLUSTER</span>` },
+                TUE: { title: "Day Off // Deep Rest", content: `<span class="text-zinc-400 block mb-1">Total physical & neural black zone. 1:4:2 Box Breathing execution. Flush Monday late-night catecholamines.</span><span class="text-brand-purple text-xs font-bold block mt-2"><i class="fas fa-heartbeat mr-1"></i> PARASYMPATHETIC CLEARANCE PHASE</span>` },
+                WED: { title: "Lifting Session // Wed", content: liftingDayContent },
+                THU: { title: "Alactic Engine (A.X.E. Format)", content: `<span class="text-zinc-400 block mb-1">1. <strong>Overspeed Swings</strong> (24kg): 10s ON / 50s OFF (x10).</span><span class="text-zinc-400 block">2. Snatches (24kg) 5x5 L/R. Zero lactic burn tracking.</span>` },
+                FRI: { title: "Day Off // System Recovery", content: `<span class="text-zinc-400 block mb-1"><strong>IL-6 Clearance window:</strong> Complete structural unloading. Pre-hab alignment matrix.</span><span class="text-zinc-400 block">Deploy Starrett Dip Isometrics, kettlebell arm-bars, and deep front line un-gluing.</span><span class="text-brand-purple text-xs font-bold block mt-2"><i class="fas fa-wind mr-1"></i> NEURAL RECOVERY CYCLE</span>` },
+                SAT: { title: "Gi BJJ (War Day)", content: `<span class="text-zinc-400 block mb-1">Uncapped competition matching rows. Maximum systemic load execution block.</span>` },
+                SUN: { title: "Zone 2 Base", content: `<span class="text-zinc-500 block">45m Ruck or Walk. HR strictly under 140bpm. Nasal only. Legs Up The Wall (10m).</span>` }
+            };
+
+            return currentSeason === 'summer' ? summer : winter;
+        }
+
+        function setSeason(season) {
+            currentSeason = season;
+            document.getElementById('btn-season-summer').classList.toggle('active', season === 'summer');
+            document.getElementById('btn-season-winter').classList.toggle('active', season === 'winter');
+
+            document.getElementById('current-schedule-label').innerText = season === 'summer' ? "SUMMER CADENCE // MON-WED-SAT BJJ" : "AUTUMN CADENCE // MON-SAT BJJ";
+            document.getElementById('wed-fallback-row').style.display = season === 'summer' ? 'flex' : 'none';
+
             updateDashboard();
-            localStorage.setItem('sentinel_v6_month', monthKey);
+        }
+
+        function setLiftStrategy(strategy) {
+            currentStrategy = strategy;
+            document.getElementById('btn-strat-beastly').classList.toggle('active', strategy === 'beastly');
+            document.getElementById('btn-strat-dfw').classList.toggle('active', strategy === 'dfw');
+            document.getElementById('btn-strat-hybrid').classList.toggle('active', strategy === 'hybrid');
+
+            updateDashboard();
+        }
+
+        function toggleDayFallback(day) {
+            const toggle = document.getElementById(`${day.toLowerCase()}-fallback-toggle`);
+            fallbacksActive[day] = toggle.checked;
+            updateDashboard();
         }
 
         function updateDashboard() {
-            const data = protocols[currentPhase].months[currentMonthKey];
-            if(!data) return;
-
-            document.getElementById('current-month-label').innerText = `${currentMonthKey} // ${protocols[currentPhase].title}`;
-            document.getElementById('focus-text').innerText = data.focus;
-
-            // NO-GI OVERRIDE LOGIC
-            let monData = { ...data.mon };
-            let tueData = { ...data.tue };
-
-            if (noGiActive) {
-                monData.title = "Mat Hygiene (No-Gi)";
-                monData.content = `<span class="text-zinc-300 text-sm block mb-1">Zero kettlebells today. Focus entirely on framing, survival, and movement efficiency on the mats.</span><span class="text-brand-purple text-xs font-bold block mt-2"><i class="fas fa-shield-alt mr-1"></i> CNS PRESERVED</span>`;
-                
-                tueData.title = "SFG1 Skill Practice";
-                tueData.content = `<span class="text-zinc-300 text-sm block mb-1">Heavy lifting aborted due to Monday No-Gi CNS tax.</span><span class="text-zinc-300 text-sm block">Execute SFG1 skills (24kg) with crisp technique. Snatches, Cleans, TGUs. Treat as practice, not a workout.</span><span class="text-brand-purple text-xs font-bold block mt-2"><i class="fas fa-balance-scale mr-1"></i> AUTOREGULATED</span>`;
-            }
-
+            const currentSchedule = getDynamicSchedule();
             const grid = document.getElementById('weekly-grid');
+
+            let monData = fallbacksActive.MON ? { title: "Monday Recovery Matrix", content: fallbackContent } : currentSchedule.MON;
+            let wedData = fallbacksActive.WED && currentSeason === 'summer' ? { title: "Wednesday Recovery Matrix", content: fallbackContent } : currentSchedule.WED;
+            let satData = fallbacksActive.SAT ? { title: "Saturday Recovery Matrix", content: fallbackContent } : currentSchedule.SAT;
+
             grid.innerHTML = `
-                ${createDayCard('MON', monData.title, 'fa-dumbbell', monData.content, noGiActive ? 'border-brand-purple shadow-[0_0_15px_rgba(147,51,234,0.15)]' : '')}
-                ${createDayCard('TUE', tueData.title, 'fa-bolt', tueData.content, noGiActive ? 'border-brand-purple shadow-[0_0_15px_rgba(147,51,234,0.15)]' : '')}
-                ${createDayCard('WED', staticDays.WED.title, staticDays.WED.icon, `<span class="text-zinc-400 text-sm">${staticDays.WED.content}</span>`, 'opacity-70')}
-                ${createDayCard('THU', data.thu.title, 'fa-stopwatch', data.thu.content, '')}
+                ${createDayCard('MON', monData.title, 'fa-dumbbell', monData.content, fallbacksActive.MON ? 'border-brand-emerald bg-emerald-950/5 shadow-[0_0_15px_rgba(16,185,129,0.1)]' : '')}
+                ${createDayCard('TUE', currentSchedule.TUE.title, 'fa-bed', currentSchedule.TUE.content, 'border-zinc-700 bg-zinc-950/20')}
+                ${createDayCard('WED', wedData.title, 'fa-yin-yang', wedData.content, (fallbacksActive.WED && currentSeason === 'summer') ? 'border-brand-emerald bg-emerald-950/5 shadow-[0_0_15px_rgba(16,185,129,0.1)]' : '')}
+                ${createDayCard('THU', currentSchedule.THU.title, 'fa-bolt', currentSchedule.THU.content, '')}
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
-                    ${createSmallCard('FRI', staticDays.FRI.title, staticDays.FRI.icon, staticDays.FRI.content)}
-                    ${createSmallCard('SAT', staticDays.SAT.title, staticDays.SAT.icon, staticDays.SAT.content, 'border-zinc-600')}
-                    ${createSmallCard('SUN', staticDays.SUN.title, staticDays.SUN.icon, staticDays.SUN.content)}
+                    ${createSmallCard('FRI', currentSchedule.FRI.title, 'fa-stopwatch', currentSchedule.FRI.content, 'border-zinc-700 bg-zinc-950/20')}
+                    ${createSmallCard('SAT', satData.title, 'fa-fire', satData.content, fallbacksActive.SAT ? 'border-brand-emerald bg-emerald-950/5 shadow-[0_0_15px_rgba(16,185,129,0.1)]' : 'border-[#10b981]')}
+                    ${createSmallCard('SUN', currentSchedule.SUN.title, 'fa-leaf', currentSchedule.SUN.content)}
                 </div>
             `;
         }
 
-        function createDayCard(day, title, icon, content, extraClasses) {
-            return `
-            <div class="day-card glass-card p-5 flex flex-col md:flex-row gap-4 md:items-center ${extraClasses}">
-                <div class="w-16 h-16 shrink-0 bg-zinc-900 border border-zinc-800 rounded-lg flex flex-col items-center justify-center">
-                    <span class="text-brand-purple font-bold text-sm">${day}</span>
-                    <i class="fas ${icon} text-zinc-600 mt-1 text-xs"></i>
-                </div>
-                <div class="flex-1">
-                    <h4 class="text-white font-bold uppercase tracking-wider mb-2 text-sm">${title}</h4>
-                    <div class="text-zinc-400 text-sm leading-relaxed">${content}</div>
-                </div>
-            </div>`;
+        function autoSelectProtocol() {
+            const co2 = parseInt(document.getElementById('co2-input').value) || 0;
+            if (co2 === 0) {
+                alert("Please enter your CO2 Tolerance (SEC) in the Autoregulation Engine first.");
+                return;
+            }
+
+            let strategy = 'dfw';
+
+            if (co2 < 40) {
+                strategy = 'dfw';
+                alert("SYSTEM REDLINE (CO2 < 40s): CNS exhausted. \n\nACTION: Defaulting to DFW parameters, but execute with LIGHT BELLS ONLY (Active Recovery / Zone 2). Do not attempt absolute force today.");
+            } else if (co2 >= 40 && co2 < 60) {
+                strategy = 'dfw';
+                alert("SYSTEM AMBER (CO2 40-59s): CNS is stable but accumulating fatigue. \n\nACTION: Assigned DFW Grappler to build density and armor. No 1RM attempts today.");
+            } else {
+                const roll = Math.floor(Math.random() * 6) + 1;
+                if (roll <= 2) {
+                    strategy = 'beastly';
+                    alert(`SYSTEM GREEN (CO2 > 60s): CNS is highly potentiated.\n\nDICE ROLL: [${roll}] -> Assigned BEASTLY 3. Execute absolute force singles today.`);
+                } else if (roll <= 4) {
+                    strategy = 'dfw';
+                    alert(`SYSTEM GREEN (CO2 > 60s): CNS is highly potentiated.\n\nDICE ROLL: [${roll}] -> Assigned DFW GRAPPLER. Execute heavy density training today.`);
+                } else {
+                    strategy = 'hybrid';
+                    alert(`SYSTEM GREEN (CO2 > 60s): CNS is highly potentiated.\n\nDICE ROLL: [${roll}] -> Assigned HYBRID PEAK. Execute absolute force singles followed by DFW back-off volume.`);
+                }
+            }
+            setLiftStrategy(strategy);
         }
 
-        function createSmallCard(day, title, icon, content, extraClasses = 'border-transparent') {
-            return `
-            <div class="glass-card p-4 border ${extraClasses}">
-                <div class="flex justify-between items-center mb-2">
-                    <span class="text-zinc-500 font-bold text-xs">${day}</span>
-                    <i class="fas ${icon} text-zinc-600 text-xs"></i>
-                </div>
-                <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-1">${title}</h4>
-                <p class="text-zinc-500 text-[10px] leading-tight">${content}</p>
-            </div>`;
+        // --- STOCHASTIC DFW CALCULATOR ---
+        function generateDFW(mode) {
+            const btnLadders = document.getElementById('btn-dfw-ladders');
+            const btnSets = document.getElementById('btn-dfw-sets');
+            btnLadders.classList.remove('active');
+            btnSets.classList.remove('active');
+            
+            const card = document.getElementById('dfw-output');
+            const schemeEl = document.getElementById('dfw-scheme');
+            
+            if(mode === 1) {
+                btnLadders.classList.add('active');
+                schemeEl.innerHTML = "<strong>Sets:</strong> 5 x Ladders of 1, 2, 3 reps.<br><strong>Execution:</strong> 1 Clean + 1 Front Squat, then rest. 2 Cleans + 2 Front Squats, then rest. Repeat. Avoid grinding reps.";
+            } else {
+                btnSets.classList.add('active');
+                schemeEl.innerHTML = "<strong>Sets:</strong> 6 sets x 3 reps across.<br><strong>Execution:</strong> Clean the double 24s, perform 3 front squats, park the bells. Rest exactly 2 mins. Maintain flawless posture.";
+            }
+            card.classList.remove('hidden');
         }
 
+        function rollDice() {
+            const icon = document.getElementById('dice-icon');
+            const resultBox = document.getElementById('dice-result');
+            const catText = document.getElementById('dice-category');
+            const descText = document.getElementById('dice-desc');
+            
+            icon.classList.add('dice-shake');
+            resultBox.classList.add('hidden');
+            
+            setTimeout(() => {
+                icon.classList.remove('dice-shake');
+                const roll = Math.floor(Math.random() * 6) + 1;
+                const diceClasses = ['fa-dice-one', 'fa-dice-two', 'fa-dice-three', 'fa-dice-four', 'fa-dice-five', 'fa-dice-six'];
+                icon.className = `fas ${diceClasses[roll-1]} text-6xl text-brand-purple`;
+
+                if(roll === 1 || roll === 2) {
+                    catText.innerText = "LIGHT (40-50%)";
+                    catText.className = "text-lg font-black mono text-emerald-500 uppercase mb-1";
+                    descText.innerText = "Active recovery, speed, technique. (e.g., 20-24kg). Match-velocity and active tissue flush.";
+                } else if(roll === 3 || roll === 4) {
+                    catText.innerText = "MEDIUM (60-70%)";
+                    catText.className = "text-lg font-black mono text-yellow-500 uppercase mb-1";
+                    descText.innerText = "Structural density, crisp lockouts, hypertrophy focus. (e.g., 28kg).";
+                } else {
+                    catText.innerText = "HEAVY (80-85%)";
+                    catText.className = "text-lg font-black mono text-red-500 uppercase mb-1";
+                    descText.innerText = "Absolute Force. Autoregulated Singles. Respect the IL-6 inflammatory clearance window.";
+                }
+                resultBox.classList.remove('hidden');
+            }, 500);
+        }
+
+        // --- MAP ZONE CALCULATOR ---
+        function setModality(selected) {
+            currentModality = selected;
+            document.getElementById('btn-yosuda').classList.toggle('active', selected === 'yosuda');
+            document.getElementById('btn-kb').classList.toggle('active', selected === 'kb');
+
+            const unit = selected === 'yosuda' ? 'RPM' : 'SPM';
+            document.getElementById('input-label').innerText = `Maximum Aerobic Power (Lvl 10) (${unit})`;
+            document.getElementById('input-unit').innerText = unit;
+
+            const val = parseFloat(document.getElementById('map-input').value);
+            if (!isNaN(val) && val > 0) calculateMAP();
+        }
+
+        function calculateMAP() {
+            const val = parseFloat(document.getElementById('map-input').value);
+            const zonesCard = document.getElementById('map-zones');
+            if (isNaN(val) || val <= 0) {
+                zonesCard.classList.add('hidden');
+                return;
+            }
+            const unit = currentModality === 'yosuda' ? 'RPM' : 'SPM';
+            document.getElementById('zone-base').innerText = `${Math.round(val * 0.7)} ${unit}`;
+            document.getElementById('zone-clear').innerText = `${Math.round(val * 0.9)} / ${Math.round(val * 0.5)} ${unit}`;
+            document.getElementById('zone-alactic').innerText = `${Math.round(val * 1.3)}+ ${unit}`;
+            zonesCard.classList.remove('hidden');
+        }
+
+        function calculateCO2Status() {
+            const val = parseInt(document.getElementById('co2-input').value);
+            const statusEl = document.getElementById('co2-status');
+            
+            if (isNaN(val) || val <= 0) {
+                statusEl.innerText = "AWAITING BIOMETRICS";
+                statusEl.className = "text-[10px] font-mono mt-1.5 text-zinc-500 font-bold uppercase tracking-wider";
+                return;
+            }
+
+            if (val >= 60) {
+                statusEl.innerHTML = "VAGAL STATUS: HIGHLY POTENTIATED<br><span class='text-brand-emerald'>CLEARED: UP TO 5 ROUNDS YOSUDA + TGU PROTOCOL</span>";
+                statusEl.className = "text-[10px] font-mono mt-1.5 text-emerald-500 font-bold uppercase tracking-wider leading-relaxed";
+            } else if (val >= 40) {
+                statusEl.innerHTML = "VAGAL STATUS: STABLE // REDUCE WORK SETS<br><span class='text-yellow-500'>RESTRICTED: MAX 2-3 ROUNDS YOSUDA + TGU</span>";
+                statusEl.className = "text-[10px] font-mono mt-1.5 text-yellow-500 font-bold uppercase tracking-wider leading-relaxed";
+            } else {
+                statusEl.innerHTML = "VAGAL STATUS: EXHAUSTED // ZERO CONCENTRIC PRESSING<br><span class='text-red-500'>RESTRICTED: ACTIVE RECOVERY ONLY</span>";
+                statusEl.className = "text-[10px] font-mono mt-1.5 text-red-500 font-bold uppercase tracking-wider animate-pulse leading-relaxed";
+            }
+        }
+
+        // --- QUICK & THE DEAD 8-MIN CYCLICAL LOOP TIMER LOGIC WITH AUDIO ---
+        let qdTimerInterval, qdTimeSeconds = 0, qdLoopIsActive = false;
+        let currentQdPhase = -1; 
+        
+        function updateTimelineVisual(currentSecond) {
+            const loopSecond = currentSecond % 480; 
+            
+            for (let i = 0; i <= 5; i++) {
+                const el = document.getElementById(`step-${i}`);
+                el.classList.remove('bg-brand-purple/20', 'text-white', 'border-l-2', 'border-brand-purple');
+                el.classList.add('text-zinc-500');
+            }
+
+            let activeStep = -1;
+            let stepLabel = "";
+            let newPhase = -1; 
+
+            if (loopSecond >= 0 && loopSecond < 45) {
+                activeStep = 0;
+                if (loopSecond < 15) { stepLabel = `YOSUDA ALACTIC SPRINT (LEFT) // T-${15 - loopSecond}s`; newPhase = 0; }
+                else { stepLabel = `TURKISH GET-UP L CONCENTRATE // T-${45 - loopSecond}s`; newPhase = 1; }
+            } else if (loopSecond >= 45 && loopSecond < 60) {
+                activeStep = 1;
+                stepLabel = `PREPARE NEXT SET L // T-${60 - loopSecond}s`; newPhase = 3;
+            } else if (loopSecond >= 60 && loopSecond < 105) {
+                activeStep = 1;
+                if (loopSecond < 75) { stepLabel = `YOSUDA ALACTIC SPRINT (LEFT) // T-${75 - loopSecond}s`; newPhase = 0; }
+                else { stepLabel = `TURKISH GET-UP L CONCENTRATE // T-${105 - loopSecond}s`; newPhase = 1; }
+            } else if (loopSecond >= 105 && loopSecond < 240) {
+                activeStep = 2;
+                stepLabel = `COMT ADRENALINE DEEP REST // T-${240 - loopSecond}s`; newPhase = 2;
+            } else if (loopSecond >= 240 && loopSecond < 285) {
+                activeStep = 3;
+                if (loopSecond < 255) { stepLabel = `YOSUDA ALACTIC SPRINT (RIGHT) // T-${255 - loopSecond}s`; newPhase = 0; }
+                else { stepLabel = `TURKISH GET-UP R CONCENTRATE // T-${285 - loopSecond}s`; newPhase = 1; }
+            } else if (loopSecond >= 285 && loopSecond < 300) {
+                activeStep = 1; 
+                stepLabel = `PREPARE NEXT SET R // T-${300 - loopSecond}s`; newPhase = 3;
+            } else if (loopSecond >= 300 && loopSecond < 345) {
+                activeStep = 4;
+                if (loopSecond < 315) { stepLabel = `YOSUDA ALACTIC SPRINT (RIGHT) // T-${315 - loopSecond}s`; newPhase = 0; }
+                else { stepLabel = `TURKISH GET-UP R CONCENTRATE // T-${345 - loopSecond}s`; newPhase = 1; }
+            } else if (loopSecond >= 345 && loopSecond < 480) {
+                activeStep = 5;
+                stepLabel = `COMT ADRENALINE DEEP REST // T-${480 - loopSecond}s`; newPhase = 2;
+            }
+
+            if (newPhase !== currentQdPhase && qdTimeSeconds > 0) {
+                currentQdPhase = newPhase;
+                if (newPhase === 0) playSprintBeep();
+                else if (newPhase === 1) playTguBeep();
+                else if (newPhase === 2) playRestBeep();
+            }
+
+            if (activeStep !== -1) {
+                const el = document.getElementById(`step-${activeStep}`);
+                if (el) {
+                    el.classList.replace('text-zinc-500', 'text-white');
+                    el.classList.add('bg-brand-purple/20', 'border-l-2', 'border-brand-purple');
+                }
+                document.getElementById('timer-state').innerText = stepLabel;
+            }
+        }
+
+        function toggleQDLoop() {
+            const btn = document.getElementById('btn-qd-control');
+            if (qdLoopIsActive) {
+                clearInterval(qdTimerInterval);
+                qdLoopIsActive = false;
+                releaseWakeLock();
+                btn.innerText = "RESUME LOOP";
+                btn.className = "flex-1 bg-brand-purple hover:bg-purple-700 text-white font-mono text-xs font-bold py-2.5 rounded-lg transition-all tracking-widest uppercase";
+                document.getElementById('timer-state').innerText = "SYSTEM PAUSED";
+            } else {
+                requestWakeLock();
+                initAudio(); 
+                qdLoopIsActive = true;
+                btn.innerText = "PAUSE LOOP";
+                btn.className = "flex-1 bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-brand-purple font-mono text-xs font-bold py-2.5 rounded-lg transition-all tracking-widest uppercase";
+                
+                if(qdTimeSeconds === 0) playSprintBeep(); 
+
+                qdTimerInterval = setInterval(() => {
+                    qdTimeSeconds++;
+                    let min = Math.floor(qdTimeSeconds / 60);
+                    let sec = qdTimeSeconds % 60;
+                    document.getElementById('timer-display').innerText = `${min < 10 ? '0' : ''}${min}:${sec < 10 ? '0' : ''}${sec}`;
+                    updateTimelineVisual(qdTimeSeconds);
+                }, 1000);
+            }
+        }
+
+        function stopQDLoop() {
+            clearInterval(qdTimerInterval);
+            releaseWakeLock();
+            qdLoopIsActive = false;
+            qdTimeSeconds = 0;
+            currentQdPhase = -1;
+            document.getElementById('timer-display').innerText = "00:00";
+            document.getElementById('timer-state').innerText = "READY TO DEPLOY";
+            document.getElementById('btn-qd-control').innerText = "START LOOP";
+            document.getElementById('btn-qd-control').className = "flex-1 bg-brand-purple hover:bg-purple-700 text-white font-mono text-xs font-bold py-2.5 rounded-lg transition-all tracking-widest uppercase";
+            
+            for (let i = 0; i <= 5; i++) {
+                const el = document.getElementById(`step-${i}`);
+                if (el) el.className = "flex justify-between items-center px-1.5 py-0.5 rounded text-zinc-500";
+            }
+        }
+
+        // --- SFG1 SNATCH ENGINE WITH AUDIO ---
+        let snatchInterval, snatchSeconds = 0, snatchActive = false, totalSnatchReps = 0;
+        let currentSnatchPhase = -1;
+
+        function updateSnatchVisuals(sec) {
+            const loopSec = sec % 60;
+            const stateEl = document.getElementById('snatch-timer-state');
+            const flashEl = document.getElementById('snatch-flash');
+            
+            let min = Math.floor(sec / 60);
+            let displaySec = sec % 60;
+            document.getElementById('snatch-timer-display').innerText = `${min < 10 ? '0' : ''}${min}:${displaySec < 10 ? '0' : ''}${displaySec}`;
+            let newPhase = -1;
+
+            if (loopSec >= 0 && loopSec < 15) {
+                stateEl.innerText = `WORK RIGHT // T-${15 - loopSec}s`;
+                stateEl.className = "text-xs font-mono text-white tracking-widest uppercase font-bold mt-2 relative z-10";
+                flashEl.style.opacity = '0.3';
+                newPhase = 0; 
+            } else if (loopSec >= 15 && loopSec < 30) {
+                stateEl.innerText = `REST // T-${30 - loopSec}s`;
+                stateEl.className = "text-xs font-mono text-zinc-500 tracking-widest uppercase font-bold mt-2 relative z-10";
+                flashEl.style.opacity = '0';
+                newPhase = 1; 
+            } else if (loopSec >= 30 && loopSec < 45) {
+                stateEl.innerText = `WORK LEFT // T-${45 - loopSec}s`;
+                stateEl.className = "text-xs font-mono text-white tracking-widest uppercase font-bold mt-2 relative z-10";
+                flashEl.style.opacity = '0.3';
+                newPhase = 0; 
+            } else if (loopSec >= 45 && loopSec < 60) {
+                stateEl.innerText = `REST // T-${60 - loopSec}s`;
+                stateEl.className = "text-xs font-mono text-zinc-500 tracking-widest uppercase font-bold mt-2 relative z-10";
+                flashEl.style.opacity = '0';
+                newPhase = 1; 
+                
+                if(loopSec === 59) {
+                    totalSnatchReps += 14;
+                    document.getElementById('snatch-rep-count').innerText = totalSnatchReps;
+                }
+            }
+
+            if (newPhase !== currentSnatchPhase && sec > 0) {
+                currentSnatchPhase = newPhase;
+                if (newPhase === 0) playSprintBeep();
+                else if (newPhase === 1) playRestBeep();
+            }
+            
+            if (sec >= 600) { 
+                resetSnatchTimer();
+                document.getElementById('snatch-timer-display').innerText = "10:00";
+                stateEl.innerText = "TEST COMPLETE: 140 REPS";
+                stateEl.className = "text-xs font-mono text-brand-emerald tracking-widest uppercase font-bold mt-2 relative z-10";
+            }
+        }
+
+        function toggleSnatchTimer() {
+            const btn = document.getElementById('btn-snatch-control');
+            document.getElementById('snatch-rep-tracker').classList.remove('hidden');
+
+            if (snatchActive) {
+                clearInterval(snatchInterval);
+                snatchActive = false;
+                releaseWakeLock();
+                btn.innerText = "RESUME";
+                document.getElementById('snatch-timer-state').innerText = "SYSTEM PAUSED";
+            } else {
+                requestWakeLock();
+                initAudio();
+                snatchActive = true;
+                btn.innerText = "PAUSE";
+                if(snatchSeconds === 0) playSprintBeep(); 
+                
+                snatchInterval = setInterval(() => {
+                    snatchSeconds++;
+                    updateSnatchVisuals(snatchSeconds);
+                }, 1000);
+            }
+        }
+
+        function resetSnatchTimer() {
+            clearInterval(snatchInterval);
+            releaseWakeLock();
+            snatchActive = false;
+            snatchSeconds = 0;
+            totalSnatchReps = 0;
+            currentSnatchPhase = -1;
+            document.getElementById('snatch-timer-display').innerText = "00:00";
+            document.getElementById('snatch-timer-state').innerText = "AWAITING START";
+            document.getElementById('snatch-timer-state').className = "text-xs font-mono text-zinc-500 tracking-widest uppercase font-bold mt-2 relative z-10";
+            document.getElementById('btn-snatch-control').innerText = "COMMENCE";
+            document.getElementById('snatch-flash').style.opacity = '0';
+            document.getElementById('snatch-rep-tracker').classList.add('hidden');
+            document.getElementById('snatch-rep-count').innerText = "0";
+        }
+
+        // --- INIT & UTILS ---
         function loadState() {
-            const savedPhase = localStorage.getItem('sentinel_v6_phase') || 2;
-            const savedMonth = localStorage.getItem('sentinel_v6_month') || 'MAY';
-            currentMonthKey = savedMonth;
-            setPhase(parseInt(savedPhase));
-            setMonth(currentMonthKey);
+            setSeason('summer');
+            setLiftStrategy('beastly');
+            startCountdown();
+            switchTool('ai'); 
+            switchDocTab('singles');
         }
 
         function startCountdown() {
@@ -603,6 +1193,29 @@
                 document.getElementById("progress-bar").style.width = percentage + "%";
             }, 1000);
         }
+
+        // --- PRE-HAB PANEL LOGIC ---
+        const warmupTrigger = document.getElementById('warmup-trigger');
+        const warmupPanel = document.getElementById('warmup-panel');
+        const warmupOverlay = document.getElementById('warmup-overlay');
+        const closeWarmup = document.getElementById('close-warmup');
+
+        function toggleWarmup() {
+            if (warmupPanel.classList.contains('translate-x-full')) {
+                warmupPanel.classList.remove('translate-x-full');
+                warmupOverlay.classList.remove('hidden');
+            } else {
+                warmupPanel.classList.add('translate-x-full');
+                warmupOverlay.classList.add('hidden');
+            }
+        }
+
+        warmupTrigger.addEventListener('click', toggleWarmup);
+        closeWarmup.addEventListener('click', toggleWarmup);
+        warmupOverlay.addEventListener('click', toggleWarmup);
+
+        document.addEventListener('DOMContentLoaded', loadState);
+
     </script>
 </body>
 </html>
