@@ -288,11 +288,11 @@
                 </div>
             </div>
             <div class="grid gap-4" id="weekly-grid">
-                </div>
+                <!-- JS Injects Dynamic Day Cards Here -->
+            </div>
         </div>
 
-        <div class="lg:col-span-4 space-y-6">
-            
+        <!-- RIGHT: CONTROL STATS & SCI-FI TOOLS -->
             <div class="glass-card p-6 relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-16 h-16 bg-brand-purple/10 rounded-bl-full -mr-8 -mt-8"></div>
                 <h3 class="font-mono text-xs font-bold text-zinc-400 tracking-widest uppercase mb-4 flex items-center gap-2">
@@ -821,6 +821,32 @@ When answering queries, prioritize clinical terminal tables. Assess markers dire
                     ${createSmallCard('SUN', currentSchedule.SUN.title, 'fa-leaf', currentSchedule.SUN.content)}
                 </div>
             `;
+        }
+
+        function createDayCard(day, title, icon, content, extraClasses) {
+            return `
+            <div class="day-card glass-card p-5 flex flex-col md:flex-row gap-4 md:items-center ${extraClasses}">
+                <div class="w-16 h-16 shrink-0 bg-zinc-905 border border-zinc-800 rounded-xl flex flex-col items-center justify-center shadow-inner bg-black/40">
+                    <span class="text-brand-purple font-mono font-bold text-sm">${day}</span>
+                    <i class="fas ${icon} text-zinc-600 mt-1 text-xs"></i>
+                </div>
+                <div class="flex-1">
+                    <h4 class="text-white font-display font-bold uppercase tracking-wider mb-2 text-sm">${title}</h4>
+                    <div class="text-zinc-400 text-sm leading-relaxed font-mono">${content}</div>
+                </div>
+            </div>`;
+        }
+
+        function createSmallCard(day, title, icon, content, extraClasses = 'border-transparent') {
+            return `
+            <div class="glass-card p-4 border ${extraClasses}">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-zinc-500 font-mono font-bold text-xs">${day}</span>
+                    <i class="fas ${icon} text-zinc-600 text-xs"></i>
+                </div>
+                <h4 class="text-white font-display font-bold text-xs uppercase tracking-wider mb-1">${title}</h4>
+                <div class="text-zinc-500 text-[10px] leading-tight font-mono">${content}</div>
+            </div>`;
         }
 
         function autoSelectProtocol() {
