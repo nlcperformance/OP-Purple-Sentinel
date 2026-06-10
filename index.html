@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OP: PURPLE SENTINEL // COMMAND CONSOLE v9.5</title>
+    <title>OP: PURPLE SENTINEL // COMMAND CONSOLE v9.6</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -150,10 +150,12 @@
 </head>
 <body class="min-h-screen p-4 md:p-8 selection:bg-brand-purple selection:text-white">
 
+    <!-- FLOATING PRE-HAB TRIGGER -->
     <button id="warmup-trigger" class="fixed right-0 top-1/3 bg-brand-purple text-white py-6 px-2.5 rounded-l-xl font-bold text-xs tracking-widest shadow-[0_0_20px_rgba(147,51,234,0.3)] z-40 hover:bg-purple-700 transition-all duration-200 vertical-text border-l border-t border-b border-purple-500/30">
         WARM-UP & PRE-HAB
     </button>
 
+    <!-- SLIDING PRE-HAB PANEL -->
     <div id="warmup-overlay" class="fixed inset-0 bg-black/70 z-40 hidden transition-all duration-300 backdrop-blur-sm"></div>
     <div id="warmup-panel" class="fixed top-0 right-0 h-full w-80 md:w-96 bg-zinc-950 border-l border-purple-500/20 shadow-[-10px_0_30px_rgba(0,0,0,0.8)] z-50 transform translate-x-full transition-transform duration-300 overflow-y-auto">
         <div class="p-6">
@@ -205,6 +207,7 @@
         </div>
     </div>
 
+    <!-- HEADER / HUD -->
     <header class="max-w-7xl mx-auto mb-8 glass-card p-6 md:p-8">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div>
@@ -213,11 +216,11 @@
                     <h1 class="text-3xl md:text-4xl font-display font-bold text-white tracking-tight uppercase">Purple Sentinel</h1>
                 </div>
                 <div class="flex items-center gap-3 font-mono text-xs font-bold tracking-widest text-zinc-400">
-                    <span>SYS v9.5</span>
+                    <span>SYS v9.6</span>
                     <span class="w-1.5 h-1.5 rounded-full bg-zinc-600"></span>
                     <span>ACTN3(RR) / COMT(MET)</span>
                     <span class="w-1.5 h-1.5 rounded-full bg-zinc-600"></span>
-                    <span class="text-brand-purple font-black">AI CONSOLIDATED</span>
+                    <span class="text-brand-purple font-black">EVOCODE INTEGRATED</span>
                 </div>
             </div>
 
@@ -231,7 +234,9 @@
         </div>
     </header>
 
+    <!-- SEASON CONFIGURATOR & LIFTER'S CHOICE PANEL -->
     <div class="max-w-7xl mx-auto mb-6 grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <!-- Season Toggle -->
         <div class="glass-card p-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <div class="text-left w-full sm:w-auto">
                 <span class="text-xs font-mono text-brand-purple uppercase tracking-widest font-bold block mb-1">Season Cadence Module</span>
@@ -247,39 +252,46 @@
             </div>
         </div>
 
+        <!-- Non-BJJ Strategy Switcher -->
         <div class="glass-card p-4 flex flex-col gap-4">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                <div class="text-left w-full sm:w-auto">
+                <div class="text-left w-full sm:w-auto shrink-0">
                     <span class="text-xs font-mono text-brand-purple uppercase tracking-widest font-bold block mb-1">Lifting Strategy Select</span>
-                    <span class="text-xs text-zinc-400">Calibrate lift blocks between mat sessions.</span>
+                    <span class="text-xs text-zinc-400">Calibrate lift blocks.</span>
                 </div>
-                <div class="flex space-x-1.5 w-full sm:w-auto">
-                    <button onclick="autoSelectProtocol()" class="bg-brand-purple hover:bg-purple-700 text-white flex-1 sm:flex-none px-3 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-colors shadow-[0_0_10px_rgba(147,51,234,0.3)]">
-                        <i class="fas fa-microchip mr-1"></i> Auto-Assign
+                <div class="flex flex-wrap gap-1.5 w-full sm:w-auto justify-end">
+                    <button onclick="autoSelectProtocol()" class="bg-brand-purple hover:bg-purple-700 text-white px-3 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider transition-colors shadow-[0_0_10px_rgba(147,51,234,0.3)]">
+                        <i class="fas fa-microchip mr-1"></i> Auto
                     </button>
-                    <button onclick="setLiftStrategy('beastly')" id="btn-strat-beastly" class="btn-toggle flex-1 sm:flex-none px-3 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider active">
+                    <button onclick="setLiftStrategy('beastly')" id="btn-strat-beastly" class="btn-toggle px-3 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider active">
                         Beastly 3
                     </button>
-                    <button onclick="setLiftStrategy('dfw')" id="btn-strat-dfw" class="btn-toggle flex-1 sm:flex-none px-3 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider">
+                    <button onclick="setLiftStrategy('dfw')" id="btn-strat-dfw" class="btn-toggle px-3 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider">
                         DFW
                     </button>
-                    <button onclick="setLiftStrategy('hybrid')" id="btn-strat-hybrid" class="btn-toggle flex-1 sm:flex-none px-3 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider">
-                        Hybrid Peak
+                    <button onclick="setLiftStrategy('hybrid')" id="btn-strat-hybrid" class="btn-toggle px-3 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider">
+                        Hybrid
+                    </button>
+                    <button onclick="setLiftStrategy('new_athlete')" id="btn-strat-new_athlete" class="btn-toggle px-3 py-2 rounded-xl text-[10px] font-bold uppercase tracking-wider">
+                        New Athlete
                     </button>
                 </div>
             </div>
             
+            <!-- Tactical Deployment Guide -->
             <div class="bg-zinc-950/60 border border-zinc-800 rounded-lg p-3 text-[10px] text-zinc-400 font-mono leading-relaxed shadow-inner">
                 <strong class="text-brand-purple block mb-1"><i class="fas fa-sitemap mr-1"></i> CONSOLIDATION AUTO-REGULATION INTERNALS:</strong>
-                <span class="text-emerald-500 font-bold">CO2 > 60s (GREEN):</span> CNS cleared. Roll D6: [1-2] Beastly 3, [3-4] DFW Grappler, [5-6] Hybrid Peak.<br>
+                <span class="text-emerald-500 font-bold">CO2 > 60s (GREEN):</span> CNS cleared. Roll D6: [1-2] Beastly 3, [3-4] DFW Grappler, [5] Hybrid Peak, [6] New Athlete.<br>
                 <span class="text-yellow-500 font-bold">CO2 40-59s (AMBER):</span> CNS fatigue block active. Forced DFW Grappler volume (density focus / zero 1RMs).<br>
                 <span class="text-red-500 font-bold">CO2 &lt; 40s (RED):</span> System completely redlined. Forced Triage (The Wrench / Active Rest Flushes).
             </div>
         </div>
     </div>
 
+    <!-- MAIN PLATFORM GRID -->
     <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
         
+        <!-- LEFT: TACTICAL PROGRESSION GRID -->
         <div class="lg:col-span-8 space-y-6">
             <div class="flex justify-between items-end mb-2 px-2">
                 <div>
@@ -293,6 +305,9 @@
         </div>
 
         <!-- RIGHT: CONTROL STATS & SCI-FI TOOLS -->
+        <div class="lg:col-span-4 space-y-6">
+            
+            <!-- BIOMETRIC FEEDBACK DECK -->
             <div class="glass-card p-6 relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-16 h-16 bg-brand-purple/10 rounded-bl-full -mr-8 -mt-8"></div>
                 <h3 class="font-mono text-xs font-bold text-zinc-400 tracking-widest uppercase mb-4 flex items-center gap-2">
@@ -308,6 +323,7 @@
                         <div id="co2-status" class="text-[10px] font-mono mt-2 text-zinc-500 font-bold uppercase tracking-wider leading-relaxed">AWAITING BIOMETRICS</div>
                     </div>
 
+                    <!-- MISSED BJJ SYSTEM TRIGGER -->
                     <div class="border-t border-zinc-900 pt-4 space-y-3">
                         <span class="text-xs font-mono text-zinc-500 uppercase tracking-widest font-bold block">Missed BJJ Fallback Panel</span>
                         <div class="flex items-center justify-between">
@@ -335,14 +351,16 @@
                 </div>
             </div>
 
-            <div class="flex space-x-1 border-b border-zinc-800 pb-2 overflow-x-auto">
+            <!-- V9.6 TOOL SELECTOR -->
+            <div class="flex space-x-1 border-b border-zinc-800 pb-2 overflow-x-auto scrollbar-hide">
                 <button onclick="switchTool('ai')" id="tool-btn-ai" class="py-2 px-3 text-[10px] md:text-xs font-bold tab-nav uppercase active mono whitespace-nowrap text-brand-purple">Sentinel AI</button>
+                <button onclick="switchTool('iso')" id="tool-btn-iso" class="py-2 px-3 text-[10px] md:text-xs font-bold tab-nav uppercase mono whitespace-nowrap">Iso Engine</button>
                 <button onclick="switchTool('qd')" id="tool-btn-qd" class="py-2 px-3 text-[10px] md:text-xs font-bold tab-nav uppercase mono whitespace-nowrap">Q&D Loop</button>
                 <button onclick="switchTool('snatch')" id="tool-btn-snatch" class="py-2 px-3 text-[10px] md:text-xs font-bold tab-nav uppercase mono whitespace-nowrap">Snatch Pacer</button>
                 <button onclick="switchTool('dfw')" id="tool-btn-dfw" class="py-2 px-3 text-[10px] md:text-xs font-bold tab-nav uppercase mono whitespace-nowrap">DFW Dice</button>
-                <button onclick="switchTool('map')" id="tool-btn-map" class="py-2 px-3 text-[10px] md:text-xs font-bold tab-nav uppercase mono whitespace-nowrap">M.A.P.</button>
             </div>
 
+            <!-- TOOL: SENTINEL AI GEM (V9.6) -->
             <div id="tool-ai" class="glass-card p-5 relative overflow-hidden flex flex-col h-[400px]">
                 <h3 class="font-mono text-xs font-bold text-zinc-400 tracking-widest uppercase flex items-center gap-2 mb-4 shrink-0">
                     <i class="fas fa-brain text-brand-purple animate-pulse"></i> Sentinel AI Architect
@@ -360,6 +378,32 @@
                 </div>
             </div>
 
+            <!-- TOOL: NEW ATHLETE ISO ENGINE -->
+            <div id="tool-iso" class="glass-card p-6 space-y-4 relative overflow-hidden hidden">
+                <div class="flex justify-between items-center">
+                    <h3 class="font-mono text-xs font-bold text-zinc-400 tracking-widest uppercase flex items-center gap-2">
+                        <i class="fas fa-anchor text-brand-purple animate-pulse"></i> Extreme Iso Engine
+                    </h3>
+                    <i class="fas fa-volume-up text-zinc-600 text-xs"></i>
+                </div>
+                <p class="text-[10px] text-zinc-500 font-mono leading-relaxed mb-2">Target: 2 to 5 minute yields. Active pull intent required. Zero passive hanging.</p>
+                <div class="bg-zinc-950 p-6 rounded-xl border border-zinc-900 text-center relative">
+                    <div id="iso-flash" class="absolute inset-0 rounded-xl transition-all duration-300 opacity-0 bg-brand-purple"></div>
+                    <div id="iso-timer-display" class="font-display text-6xl font-bold text-white tracking-widest relative z-10">00:00</div>
+                    <div id="iso-timer-state" class="text-xs font-mono text-brand-purple tracking-widest uppercase font-bold mt-2 relative z-10">AWAITING START</div>
+                </div>
+                <div class="grid grid-cols-2 gap-2 mt-2">
+                    <button id="btn-iso-control" onclick="toggleIsoTimer()" class="bg-brand-purple hover:bg-purple-700 text-white font-mono text-xs font-bold py-3 rounded-lg transition-all tracking-widest uppercase">
+                        START HOLD
+                    </button>
+                    <button onclick="resetIsoTimer()" class="bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-400 font-bold text-xs py-3 rounded-lg transition-colors">
+                        RESET
+                    </button>
+                </div>
+                <p class="text-[9px] text-zinc-600 text-center mono uppercase mt-2">Audio Cues & Wake Lock Guard Engaged</p>
+            </div>
+
+            <!-- TOOL: Q&D ALACTIC 8-MIN LOOP TIMER -->
             <div id="tool-qd" class="glass-card p-6 space-y-4 relative overflow-hidden hidden">
                 <div class="flex justify-between items-center">
                     <h3 class="font-mono text-xs font-bold text-zinc-400 tracking-widest uppercase flex items-center gap-2">
@@ -389,6 +433,7 @@
                 <p class="text-[9px] text-zinc-600 text-center mono uppercase mt-2">Audio Cues & Wake Lock Guard Engaged</p>
             </div>
 
+            <!-- TOOL: SFG1 SNATCH PACER -->
             <div id="tool-snatch" class="glass-card p-6 space-y-4 relative overflow-hidden hidden">
                 <div class="flex justify-between items-center">
                     <h3 class="font-mono text-xs font-bold text-zinc-400 tracking-widest uppercase flex items-center gap-2">
@@ -416,6 +461,7 @@
                 <p class="text-[9px] text-zinc-600 text-center mono uppercase mt-2">Audio Cues & Wake Lock Guard Engaged</p>
             </div>
 
+            <!-- TOOL: DFW GRAPPLER CALCULATOR -->
             <div id="tool-dfw" class="glass-card p-6 space-y-4 hidden flex-col items-center justify-center text-center">
                 <h3 class="font-mono text-xs font-bold text-zinc-400 tracking-widest uppercase flex items-center gap-2 self-start">
                     <i class="fas fa-dice text-brand-purple"></i> Stochastic DFW Selector
@@ -442,49 +488,55 @@
                 </div>
             </div>
 
-            <div id="tool-map" class="glass-card p-6 space-y-4 hidden">
-                <h3 class="font-mono text-xs font-bold text-zinc-400 tracking-widest uppercase flex items-center gap-2">
-                    <i class="fas fa-tachometer-alt text-brand-purple"></i> M.A.P. Engine Calculator
-                </h3>
-                <div class="flex space-x-2">
-                    <button id="btn-yosuda" onclick="setModality('yosuda')" class="btn-toggle active flex-1 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider font-mono">YOSUDA</button>
-                    <button id="btn-kb" onclick="setModality('kb')" class="btn-toggle flex-1 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider font-mono">KETTLEBELL</button>
-                </div>
-                <div class="bg-zinc-950/60 p-3 rounded-lg border border-zinc-900">
-                    <label id="input-label" class="block text-[10px] font-mono text-zinc-500 uppercase mb-2">Maximum Aerobic Power (RPM at Lvl 10)</label>
-                    <div class="relative flex items-center">
-                        <input type="number" id="map-input" placeholder="e.g. 60" class="w-full bg-zinc-950 border border-zinc-800 rounded py-2 px-3 text-white font-mono text-sm focus:border-brand-purple focus:outline-none text-center" oninput="calculateMAP()">
-                        <span id="input-unit" class="absolute right-3 text-xs font-mono text-zinc-600 font-bold">RPM</span>
-                    </div>
-                </div>
-                <div id="map-zones" class="space-y-2.5 hidden">
-                    <div class="bg-zinc-900/30 p-2.5 rounded border border-zinc-900 flex justify-between items-center text-xs">
-                        <span class="text-blue-400 font-mono font-bold uppercase">Aerobic Base (70%):</span>
-                        <span id="zone-base" class="text-white font-mono font-bold">-- RPM</span>
-                    </div>
-                    <div class="bg-zinc-900/30 p-2.5 rounded border border-zinc-900 flex justify-between items-center text-xs">
-                        <span class="text-yellow-400 font-mono font-bold uppercase">Lactate Clear (90/50%):</span>
-                        <span id="zone-clear" class="text-white font-mono font-bold">-- / -- RPM</span>
-                    </div>
-                    <div class="bg-zinc-900/30 p-2.5 rounded border border-zinc-900 flex justify-between items-center text-xs">
-                        <span class="text-red-500 font-mono font-bold uppercase">Alactic RSA (130%):</span>
-                        <span id="zone-alactic" class="text-white font-mono font-bold">-- RPM</span>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 
+    <!-- HIGH-FIDELITY DOCTRINE & PROTOCOLS SECTION -->
     <section class="max-w-7xl mx-auto glass-card p-6 md:p-8 mb-8">
         
-        <div class="flex border-b border-zinc-800 pb-2 mb-6 overflow-x-auto">
-            <button onclick="switchDocTab('singles')" id="tab-singles" class="tab-nav active mono text-sm font-bold tracking-widest mr-8 uppercase whitespace-nowrap">Heavy Singles</button>
-            <button onclick="switchDocTab('snatch')" id="tab-snatch" class="tab-nav mono text-sm font-bold tracking-widest uppercase whitespace-nowrap">SFG1 Snatch Doctrine</button>
-            <button onclick="switchDocTab('reset')" id="tab-reset" class="tab-nav mono text-sm font-bold tracking-widest uppercase whitespace-nowrap">Neuro-Vagal Reset</button>
+        <!-- Tabs Header -->
+        <div class="flex border-b border-zinc-800 pb-2 mb-6 overflow-x-auto scrollbar-hide">
+            <button onclick="switchDocTab('new_athlete')" id="tab-new_athlete" class="tab-nav active mono text-sm font-bold tracking-widest mr-8 uppercase whitespace-nowrap text-brand-purple">New Athlete Doctrine</button>
+            <button onclick="switchDocTab('singles')" id="tab-singles" class="tab-nav mono text-sm font-bold tracking-widest mr-8 uppercase whitespace-nowrap">Heavy Singles</button>
+            <button onclick="switchDocTab('snatch')" id="tab-snatch" class="tab-nav mono text-sm font-bold tracking-widest mr-8 uppercase whitespace-nowrap">SFG1 Snatch</button>
+            <button onclick="switchDocTab('reset')" id="tab-reset" class="tab-nav mono text-sm font-bold tracking-widest uppercase whitespace-nowrap">Vagal Reset</button>
         </div>
         
-        <div id="doc-singles" class="space-y-6">
+        <!-- CONTENT: NEW ATHLETE DOCTRINE (RYAN PAUL / EVOCODE) -->
+        <div id="doc-new_athlete" class="space-y-6">
+            <div class="bg-blue-500/10 border-l-4 border-blue-500 p-4 rounded">
+                <h3 class="text-blue-400 font-bold mono text-sm tracking-widest mb-2">NEW ATHLETE: ECCENTRIC OVERLOAD & ISOMETRICS</h3>
+                <p class="text-zinc-300 text-sm leading-relaxed mb-3"><strong>The Evocode Integration.</strong> Traditional lifting focuses on concentric force, shortening the muscle and risking structural failure. The Ryan Paul methodology trains 80% eccentric absorption and yielding isometrics. This builds shock absorbers capable of decelerating 220lb training partners without tendon rupture.</p>
+                <p class="text-zinc-300 text-sm leading-relaxed"><strong>COL5A1 Guardrails:</strong> No 100-rep bodyweight depth drops (inflammation trigger). Instead, we use the <strong>kBox Flywheel</strong> or light barbells for safe, neurologically demanding Drop-Catches that autoregulate to your exact structural capacity.</p>
+            </div>
+
+            <div>
+                <h3 class="mono text-lg font-bold text-white mb-4 border-b border-zinc-800 pb-2">THE DECELERATION ARSENAL</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-lg relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-brand-purple"></div>
+                        <h4 class="text-white font-bold mono text-md mb-1">1. EXTREME ISO LUNGE</h4>
+                        <p class="text-xs text-zinc-400 mb-2">Front shin vertical, back knee at 135 degrees. Actively <strong>pull</strong> the ground beneath you with the front hamstring. Extends the back glute.</p>
+                        <div class="bg-zinc-950 p-2 rounded text-[10px] mono text-brand-purple inline-block">TARGET: 2-5 MINS PER LEG</div>
+                    </div>
+                    <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-lg relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>
+                        <h4 class="text-white font-bold mono text-md mb-1">2. kBOX DROP-CATCH SQUAT</h4>
+                        <p class="text-xs text-zinc-400 mb-2">Drive up forcefully, let the flywheel pull you down rapidly, then violently hit the "brakes" at the absolute bottom of the squat.</p>
+                        <div class="bg-zinc-950 p-2 rounded text-[10px] mono text-emerald-400 inline-block">TARGET: 3-5 REPS MAX INTENT</div>
+                    </div>
+                    <div class="bg-zinc-900 border border-zinc-800 p-4 rounded-lg relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-yellow-500"></div>
+                        <h4 class="text-white font-bold mono text-md mb-1">3. EMPTY BAR DROP-CURL</h4>
+                        <p class="text-xs text-zinc-400 mb-2">Let the bar free-fall from chin. Violently catch and stop at exactly 90 degrees. Instantly contract back up. Never drop to full extension.</p>
+                        <div class="bg-zinc-950 p-2 rounded text-[10px] mono text-yellow-400 inline-block">TARGET: 3x5 NEURAL PRIMER</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENT: HEAVY SINGLES -->
+        <div id="doc-singles" class="space-y-6 hidden">
             <div class="bg-orange-500/10 border-l-4 border-orange-500 p-4 rounded">
                 <h3 class="text-orange-500 font-bold mono text-sm tracking-widest mb-2">THE AUTOREGULATED SINGLES PROTOCOL</h3>
                 <p class="text-zinc-300 text-sm leading-relaxed mb-3"><strong>No Sets. No Clusters. No Grinding.</strong> Because of your ACTN3/Slow COMT profile, forcing a volume of 12-15 reps is a biological trap that triggers massive IL-6 inflammation. We execute <strong>Velocity-Capped Volume.</strong></p>
@@ -516,6 +568,7 @@
             </div>
         </div>
 
+        <!-- CONTENT: SFG1 SNATCH DOCTRINE -->
         <div id="doc-snatch" class="hidden space-y-6">
             <div class="bg-brand-emerald/10 border-l-4 border-brand-emerald p-6 rounded-lg">
                 <h3 class="text-brand-emerald font-bold mono text-lg tracking-widest mb-2"><i class="fas fa-biohazard mr-2"></i>THE GOLDEN RULE OF THE SNATCH TEST</h3>
@@ -546,23 +599,10 @@
                         <li><strong class="text-red-400">Kill-Switches:</strong> Speed drop, tempo drop, form degradation, talk test failure, or muscle burning.</li>
                     </ul>
                 </div>
-
-                <div class="bg-zinc-900 border border-zinc-800 p-5 rounded-lg md:col-span-2">
-                    <h4 class="text-white font-bold mono text-md mb-3 border-b border-zinc-800 pb-2">BIOMECHANICS & HAND CARE</h4>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <strong class="text-brand-purple block mb-1 text-sm">Snatch Walking (Pacing Tool)</strong>
-                            <p class="text-xs text-zinc-400 leading-relaxed">Use a light bell (15-20% BW). Snatch overhead, take one step forward. Snatch, step backward. Forces you to lock out, pace yourself, and match your breath biomechanically to the movement.</p>
-                        </div>
-                        <div>
-                            <strong class="text-brand-purple block mb-1 text-sm">Tame The Arc (Hand Care)</strong>
-                            <p class="text-xs text-zinc-400 leading-relaxed">The biggest limiter is tearing a callus. Keep the bell path vertical like zipping a jacket. Do not "cast" it out like a fishing rod on the drop. Lead with the watch on the way up, punch through the handle to save the skin.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
+        <!-- CONTENT: NEURO-VAGAL RESET -->
         <div id="doc-reset" class="hidden space-y-6">
             <div class="bg-purple-950/30 border-l-4 border-brand-purple p-5 rounded-lg">
                 <h4 class="text-white font-bold font-display text-lg uppercase mb-2">Simhasana Protocol (The Tongue Stretch Reset)</h4>
@@ -686,6 +726,8 @@ THE BJJ FIXED CALENDAR CONFIGURATION:
 * Wednesday Evening: Gi BJJ (High grip matrix strain)
 * Saturday Morning: Gi BJJ (War Day / Sparring output density)
 
+ARSENAL INCLUDES: Beastly 3, DFW Grappler, Hybrid Peak, Q&D Alactic Loop, and the NEW ATHLETE PROTOCOL (Ryan Paul/Evocode - Extreme Isometrics, Drop-Catches, kBox deceleration).
+
 When answering queries, prioritize clinical terminal tables. Assess markers directly and present the matrix without prose headers or sign-off fluff. Remind them of the Rule 3 velocity kill-switch and post-op 1:4:2 breathing. Always add the quick string: "CHECK-IN: Did you train BJJ?"`;
 
             const co2Val = document.getElementById('co2-input').value || 'Unknown';
@@ -720,7 +762,7 @@ When answering queries, prioritize clinical terminal tables. Assess markers dire
 
         // --- CALENDAR ENGINES ---
         let currentSeason = 'summer'; 
-        let currentStrategy = 'beastly'; 
+        let currentStrategy = 'new_athlete'; 
         let fallbacksActive = { MON: false, WED: false, SAT: false };
 
         const fallbackContent = `<span class="text-zinc-400 block mb-1">Deploying <strong>Yosuda & TGU Q&D Matrix</strong> active recovery flush.</span><span class="text-zinc-400 block">1. 15s Yosuda Sprint (Level 10) + 1 TGU each side on Q&D Timer. <br>2. <strong>Rounds based on CO2 Status (See Autoregulation Engine).</strong> Active fluid drainage.</span><span class="text-brand-emerald text-xs font-bold block mt-2"><i class="fas fa-shield-alt mr-1"></i> ACTIVE RECOVERY FLUSH</span>`;
@@ -751,6 +793,14 @@ When answering queries, prioritize clinical terminal tables. Assess markers dire
                     <span class="text-zinc-400 block mb-1">2. <strong>DFW Grappler Finisher</strong>: 10-15 Minutes. Double 24s Clean & Squat ladders (1, 2, 3 reps).</span>
                     <span class="text-brand-purple text-xs font-bold block mt-2"><i class="fas fa-award mr-1"></i> ADVANCED GRAPPLER OPTIMIZATION (1-2X PER WEEK ONLY)</span>
                 `;
+            } else if (currentStrategy === 'new_athlete') {
+                liftingDayContent = `
+                    <span class="text-zinc-100 block font-bold mb-1"><i class="fa-solid fa-magnet text-brand-purple mr-1.5"></i>NEW ATHLETE: ISO / ECCENTRIC</span>
+                    <span class="text-zinc-400 block mb-1">1. <strong>Primer:</strong> Extreme Iso Lunge (2-5 mins/leg). Active hamstring pull into the ground.</span>
+                    <span class="text-zinc-400 block mb-1">2. <strong>Deceleration:</strong> kBox Drop-Catch Squat OR Empty Bar Drop-Catch Curls (3-5 reps). Hit the brakes violently.</span>
+                    <span class="text-zinc-400 block">3. <strong>Accessory:</strong> Lateral/Posterior Drop-Catches (Micro-dosed 2.5-5kg). Catch at 45 degrees.</span>
+                    <span class="text-brand-purple text-xs font-bold block mt-2"><i class="fas fa-shield-halved mr-1"></i> COL5A1 TENDON REMODELING PROTOCOL</span>
+                `;
             }
 
             const summer = {
@@ -758,7 +808,7 @@ When answering queries, prioritize clinical terminal tables. Assess markers dire
                 TUE: { title: "Day Off // Deep Rest", content: `<span class="text-zinc-400 block mb-1">Total physical & neural black zone. 1:4:2 Box Breathing execution. Flush Monday late-night catecholamines.</span><span class="text-brand-purple text-xs font-bold block mt-2"><i class="fas fa-heartbeat mr-1"></i> PARASYMPATHETIC CLEARANCE PHASE</span>` },
                 WED: { title: "Gi BJJ (KODA:MA)", content: `<span class="text-zinc-400 block mb-1">High friction grip matrix. Settle lats deep into specific frames. Use thumbless monkey grip mechanics.</span><span class="text-brand-purple text-xs font-bold block mt-2"><i class="fas fa-shield-alt mr-1"></i> GRIP ISOMETRIC TAX ACTIVE</span>` },
                 THU: { title: "Lifting Session // Thu", content: liftingDayContent },
-                FRI: { title: "Day Off // System Recovery", content: `<span class="text-zinc-400 block mb-1"><strong>IL-6 Clearance window:</strong> Complete structural unloading. Pre-hab alignment matrix.</span><span class="text-zinc-400 block">Deploy Starrett Dip Isometrics, kettlebell arm-bars, and deep front line un-gluing.</span><span class="text-brand-purple text-xs font-bold block mt-2"><i class="fas fa-wind mr-1"></i> NEURAL RECOVERY CYCLE</span>` },
+                FRI: { title: "Day Off // System Recovery", content: `<span class="text-zinc-400 block mb-1"><strong>IL-6 Clearance window:</strong> Complete structural unloading. Pre-hab alignment matrix.</span><span class="text-zinc-400 block">Deploy Starrett Dip Isometrics, kettlebell arm-bars, and deep front line un-gluing. ${currentStrategy === 'new_athlete' ? '<br><strong>Cortex Reset:</strong> 5-10m Toddler Crawls / Leopard Crawls.' : ''}</span><span class="text-brand-purple text-xs font-bold block mt-2"><i class="fas fa-wind mr-1"></i> NEURAL RECOVERY CYCLE</span>` },
                 SAT: { title: "Gi BJJ (War Day)", content: `<span class="text-zinc-400 block mb-1">Uncapped competition matching rows. Maximum systemic load execution block.</span>` },
                 SUN: { title: "Autoregulated Options", content: `<span class="text-zinc-400 block mb-1">CO2 &gt; 60s: Execute custom structural accessory/swing configurations.</span><span class="text-zinc-400 block">CO2 &lt; 60s: Force 45-minute strict nasal Zone 2 Ruck.</span>` }
             };
@@ -768,7 +818,7 @@ When answering queries, prioritize clinical terminal tables. Assess markers dire
                 TUE: { title: "Day Off // Deep Rest", content: `<span class="text-zinc-400 block mb-1">Total physical & neural black zone. 1:4:2 Box Breathing execution. Flush Monday late-night catecholamines.</span><span class="text-brand-purple text-xs font-bold block mt-2"><i class="fas fa-heartbeat mr-1"></i> PARASYMPATHETIC CLEARANCE PHASE</span>` },
                 WED: { title: "Lifting Session // Wed", content: liftingDayContent },
                 THU: { title: "Alactic Engine (A.X.E. Format)", content: `<span class="text-zinc-400 block mb-1">1. <strong>Overspeed Swings</strong> (24kg): 10s ON / 50s OFF (x10).</span><span class="text-zinc-400 block">2. Snatches (24kg) 5x5 L/R. Zero lactic burn tracking.</span>` },
-                FRI: { title: "Day Off // System Recovery", content: `<span class="text-zinc-400 block mb-1"><strong>IL-6 Clearance window:</strong> Complete structural unloading. Pre-hab alignment matrix.</span><span class="text-zinc-400 block">Deploy Starrett Dip Isometrics, kettlebell arm-bars, and deep front line un-gluing.</span><span class="text-brand-purple text-xs font-bold block mt-2"><i class="fas fa-wind mr-1"></i> NEURAL RECOVERY CYCLE</span>` },
+                FRI: { title: "Day Off // System Recovery", content: `<span class="text-zinc-400 block mb-1"><strong>IL-6 Clearance window:</strong> Complete structural unloading. Pre-hab alignment matrix.</span><span class="text-zinc-400 block">Deploy Starrett Dip Isometrics, kettlebell arm-bars, and deep front line un-gluing. ${currentStrategy === 'new_athlete' ? '<br><strong>Cortex Reset:</strong> 5-10m Toddler Crawls / Leopard Crawls.' : ''}</span><span class="text-brand-purple text-xs font-bold block mt-2"><i class="fas fa-wind mr-1"></i> NEURAL RECOVERY CYCLE</span>` },
                 SAT: { title: "Gi BJJ (War Day)", content: `<span class="text-zinc-400 block mb-1">Uncapped competition matching rows. Maximum systemic load execution block.</span>` },
                 SUN: { title: "Zone 2 Base", content: `<span class="text-zinc-500 block">45m Ruck or Walk. HR strictly under 140bpm. Nasal only. Legs Up The Wall (10m).</span>` }
             };
@@ -792,6 +842,12 @@ When answering queries, prioritize clinical terminal tables. Assess markers dire
             document.getElementById('btn-strat-beastly').classList.toggle('active', strategy === 'beastly');
             document.getElementById('btn-strat-dfw').classList.toggle('active', strategy === 'dfw');
             document.getElementById('btn-strat-hybrid').classList.toggle('active', strategy === 'hybrid');
+            document.getElementById('btn-strat-new_athlete').classList.toggle('active', strategy === 'new_athlete');
+
+            if(strategy === 'new_athlete') {
+                switchDocTab('new_athlete');
+                switchTool('iso');
+            }
 
             updateDashboard();
         }
@@ -814,7 +870,7 @@ When answering queries, prioritize clinical terminal tables. Assess markers dire
                 ${createDayCard('MON', monData.title, 'fa-dumbbell', monData.content, fallbacksActive.MON ? 'border-brand-emerald bg-emerald-950/5 shadow-[0_0_15px_rgba(16,185,129,0.1)]' : '')}
                 ${createDayCard('TUE', currentSchedule.TUE.title, 'fa-bed', currentSchedule.TUE.content, 'border-zinc-700 bg-zinc-950/20')}
                 ${createDayCard('WED', wedData.title, 'fa-yin-yang', wedData.content, (fallbacksActive.WED && currentSeason === 'summer') ? 'border-brand-emerald bg-emerald-950/5 shadow-[0_0_15px_rgba(16,185,129,0.1)]' : '')}
-                ${createDayCard('THU', currentSchedule.THU.title, 'fa-bolt', currentSchedule.THU.content, '')}
+                ${createDayCard('THU', currentSchedule.THU.title, 'fa-bolt', currentSchedule.THU.content, currentStrategy === 'new_athlete' ? 'border-brand-purple shadow-[0_0_15px_rgba(147,51,234,0.1)]' : '')}
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
                     ${createSmallCard('FRI', currentSchedule.FRI.title, 'fa-stopwatch', currentSchedule.FRI.content, 'border-zinc-700 bg-zinc-950/20')}
                     ${createSmallCard('SAT', satData.title, 'fa-fire', satData.content, fallbacksActive.SAT ? 'border-brand-emerald bg-emerald-950/5 shadow-[0_0_15px_rgba(16,185,129,0.1)]' : 'border-[#10b981]')}
@@ -849,6 +905,24 @@ When answering queries, prioritize clinical terminal tables. Assess markers dire
             </div>`;
         }
 
+        function switchTool(tool) {
+            ['iso', 'dfw', 'qd', 'snatch', 'ai'].forEach(t => {
+                const btn = document.getElementById('tool-btn-' + t);
+                const panel = document.getElementById('tool-' + t);
+                if(btn) btn.classList.toggle('active', t === tool);
+                if(panel) panel.classList.toggle('hidden', t !== tool);
+            });
+        }
+
+        function switchDocTab(tab) {
+            ['new_athlete', 'singles', 'snatch', 'reset'].forEach(t => {
+                const btn = document.getElementById('tab-' + t);
+                const doc = document.getElementById('doc-' + t);
+                if(btn) btn.classList.toggle('active', t === tab);
+                if(doc) doc.classList.toggle('hidden', t !== tab);
+            });
+        }
+        
         function autoSelectProtocol() {
             const co2 = parseInt(document.getElementById('co2-input').value) || 0;
             if (co2 === 0) {
@@ -872,9 +946,12 @@ When answering queries, prioritize clinical terminal tables. Assess markers dire
                 } else if (roll <= 4) {
                     strategy = 'dfw';
                     alert(`SYSTEM GREEN (CO2 > 60s): CNS is highly potentiated.\n\nDICE ROLL: [${roll}] -> Assigned DFW GRAPPLER. Execute heavy density training today.`);
-                } else {
+                } else if (roll === 5) {
                     strategy = 'hybrid';
                     alert(`SYSTEM GREEN (CO2 > 60s): CNS is highly potentiated.\n\nDICE ROLL: [${roll}] -> Assigned HYBRID PEAK. Execute absolute force singles followed by DFW back-off volume.`);
+                } else {
+                    strategy = 'new_athlete';
+                    alert(`SYSTEM GREEN (CO2 > 60s): CNS is highly potentiated.\n\nDICE ROLL: [${roll}] -> Assigned NEW ATHLETE PROTOCOL. Execute Extreme Isometrics and kBox/Barbell Drop-Catches.`);
                 }
             }
             setLiftStrategy(strategy);
@@ -932,34 +1009,6 @@ When answering queries, prioritize clinical terminal tables. Assess markers dire
             }, 500);
         }
 
-        // --- MAP ZONE CALCULATOR ---
-        function setModality(selected) {
-            currentModality = selected;
-            document.getElementById('btn-yosuda').classList.toggle('active', selected === 'yosuda');
-            document.getElementById('btn-kb').classList.toggle('active', selected === 'kb');
-
-            const unit = selected === 'yosuda' ? 'RPM' : 'SPM';
-            document.getElementById('input-label').innerText = `Maximum Aerobic Power (Lvl 10) (${unit})`;
-            document.getElementById('input-unit').innerText = unit;
-
-            const val = parseFloat(document.getElementById('map-input').value);
-            if (!isNaN(val) && val > 0) calculateMAP();
-        }
-
-        function calculateMAP() {
-            const val = parseFloat(document.getElementById('map-input').value);
-            const zonesCard = document.getElementById('map-zones');
-            if (isNaN(val) || val <= 0) {
-                zonesCard.classList.add('hidden');
-                return;
-            }
-            const unit = currentModality === 'yosuda' ? 'RPM' : 'SPM';
-            document.getElementById('zone-base').innerText = `${Math.round(val * 0.7)} ${unit}`;
-            document.getElementById('zone-clear').innerText = `${Math.round(val * 0.9)} / ${Math.round(val * 0.5)} ${unit}`;
-            document.getElementById('zone-alactic').innerText = `${Math.round(val * 1.3)}+ ${unit}`;
-            zonesCard.classList.remove('hidden');
-        }
-
         function calculateCO2Status() {
             const val = parseInt(document.getElementById('co2-input').value);
             const statusEl = document.getElementById('co2-status');
@@ -982,6 +1031,76 @@ When answering queries, prioritize clinical terminal tables. Assess markers dire
             }
         }
 
+        // --- EXTREME ISO TIMER (NEW ATHLETE) ---
+        let isoInterval, isoSeconds = 0, isoActive = false;
+        
+        function updateIsoVisuals(sec) {
+            let min = Math.floor(sec / 60);
+            let displaySec = sec % 60;
+            document.getElementById('iso-timer-display').innerText = `${min < 10 ? '0' : ''}${min}:${displaySec < 10 ? '0' : ''}${displaySec}`;
+            
+            const stateEl = document.getElementById('iso-timer-state');
+            const flashEl = document.getElementById('iso-flash');
+
+            // Flash every minute to signify milestone
+            if (sec > 0 && sec % 60 === 0) {
+                playTguBeep();
+                flashEl.style.opacity = '0.3';
+                setTimeout(() => flashEl.style.opacity = '0', 300);
+            }
+
+            if (sec < 60) {
+                stateEl.innerText = "YIELDING (PHASE 1)";
+            } else if (sec < 120) {
+                stateEl.innerText = "TENDON LOAD (PHASE 2)";
+                stateEl.className = "text-xs font-mono text-yellow-500 tracking-widest uppercase font-bold mt-2 relative z-10";
+            } else if (sec < 180) {
+                stateEl.innerText = "CORTEX DRIVE (PHASE 3)";
+                stateEl.className = "text-xs font-mono text-orange-500 tracking-widest uppercase font-bold mt-2 relative z-10";
+            } else if (sec < 300) {
+                stateEl.innerText = "EXTREME REMODELING (PHASE 4)";
+                stateEl.className = "text-xs font-mono text-red-500 tracking-widest uppercase font-bold mt-2 relative z-10 animate-pulse";
+            } else if (sec === 300) {
+                playSprintBeep();
+                stateEl.innerText = "5-MINUTE TARGET ACHIEVED";
+                stateEl.className = "text-xs font-mono text-brand-emerald tracking-widest uppercase font-bold mt-2 relative z-10";
+                toggleIsoTimer(); // auto pause at 5 mins
+            }
+        }
+
+        function toggleIsoTimer() {
+            const btn = document.getElementById('btn-iso-control');
+            if (isoActive) {
+                clearInterval(isoInterval);
+                isoActive = false;
+                releaseWakeLock();
+                btn.innerText = "RESUME HOLD";
+                document.getElementById('iso-timer-state').innerText += " (PAUSED)";
+            } else {
+                requestWakeLock();
+                initAudio();
+                isoActive = true;
+                btn.innerText = "PAUSE HOLD";
+                
+                isoInterval = setInterval(() => {
+                    isoSeconds++;
+                    updateIsoVisuals(isoSeconds);
+                }, 1000);
+            }
+        }
+
+        function resetIsoTimer() {
+            clearInterval(isoInterval);
+            releaseWakeLock();
+            isoActive = false;
+            isoSeconds = 0;
+            document.getElementById('iso-timer-display').innerText = "00:00";
+            document.getElementById('iso-timer-state').innerText = "AWAITING START";
+            document.getElementById('iso-timer-state').className = "text-xs font-mono text-brand-purple tracking-widest uppercase font-bold mt-2 relative z-10";
+            document.getElementById('btn-iso-control').innerText = "START HOLD";
+            document.getElementById('iso-flash').style.opacity = '0';
+        }
+
         // --- QUICK & THE DEAD 8-MIN CYCLICAL LOOP TIMER LOGIC WITH AUDIO ---
         let qdTimerInterval, qdTimeSeconds = 0, qdLoopIsActive = false;
         let currentQdPhase = -1; 
@@ -991,8 +1110,10 @@ When answering queries, prioritize clinical terminal tables. Assess markers dire
             
             for (let i = 0; i <= 5; i++) {
                 const el = document.getElementById(`step-${i}`);
-                el.classList.remove('bg-brand-purple/20', 'text-white', 'border-l-2', 'border-brand-purple');
-                el.classList.add('text-zinc-500');
+                if (el) {
+                    el.classList.remove('bg-brand-purple/20', 'text-white', 'border-l-2', 'border-brand-purple');
+                    el.classList.add('text-zinc-500');
+                }
             }
 
             let activeStep = -1;
@@ -1189,10 +1310,9 @@ When answering queries, prioritize clinical terminal tables. Assess markers dire
         // --- INIT & UTILS ---
         function loadState() {
             setSeason('summer');
-            setLiftStrategy('beastly');
+            setLiftStrategy('new_athlete');
             startCountdown();
-            switchTool('ai'); 
-            switchDocTab('singles');
+            switchDocTab('new_athlete');
         }
 
         function startCountdown() {
